@@ -1,6 +1,5 @@
-* README.md
+* changelog_file_vs_scm_commit_log.md
 * 2023.06.17
-* changelog
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
