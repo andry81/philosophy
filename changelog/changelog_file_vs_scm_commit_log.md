@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2023.06.17
+* 2023.11.08
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
@@ -187,12 +187,12 @@ Changelog files organization.
 Use an external file or files to describe the directory source changes in time.
 
 Advantages (Pros) of using a separate changelog file for changes only in the
-sources in a separate directory and all subdirectories (inclusive log):
+sources in a separate directory and all subdirectories (an inclusive log):
 
 * Changes are stored separately from the source control system, so they can be
   retrieved, read or written separately from the source control system, and
-  also, they become shared if the sources are stored or were stored in several
-  source control systems simultaneously or sequentially.
+  also, they become shared if the source filess are stored or were stored in
+  several source control systems simultaneously or sequentially.
 
 * The change file is a part of the sources, and accordingly, it can be modified
   and merged along with other sources, which does not require special access
@@ -214,19 +214,19 @@ sources in a separate directory and all subdirectories (inclusive log):
   without any additional privileges.
 
 * The change file can be relatively easily changed (corrected/added/deleted)
-  anywhere in the file (and not just for the last (Git) or one at a time (SVN)
-  commit) in subsequent commits (the log in the control system, for example,
-  for the Git system had to would change with rewriting of all dependent
-  commits, and for the SVN system - for each commit separately).
+  anywhere in the file (and not just for the last (Git) commit or one at a time
+  (SVN) commit) in subsequent commits (the log in the control system, for
+  example, for the Git system had to would change with rewriting of all
+  dependent commits, and for the SVN system - for each commit separately).
 
 * When moving sources from a source control system to a source control system,
   or when moving a directory with sources within a source control system, the
   history of this directory is also moved, because the change file, as a rule,
-  lies in the root of this directory and moves along with the sources.
+  lays in the root of this directory and moves along with the sources.
 
 * Changes that does not include source code changes can only be left to the
   source control system, which makes it easier to find changes only in the
-  source control system (changes in the source code may not be duplicated
+  source control system (changes in the source code may be not duplicated
   there).
 
 Disadvantages (Cons) of using a separate change file:
@@ -239,7 +239,7 @@ Disadvantages (Cons) of using a separate change file:
 * Errors in commits like "forgot to add file/directory",
   "forgot to change file/property" cause a new commit in version control with a
   message like "missed change", which is not included in the change file and
-  thus , not all source changes are reflected in the change file. In the git
+  thus , not all source changes are reflected in the change file. In the Git
   system, it is also usually possible to change the last commit, and changes
   before the last commit are usually expensive (the destructive operation of
   rewriting all dependent commits).
@@ -249,15 +249,14 @@ Disadvantages (Cons) of using a separate change file:
   change files from nested directories in change files from parent directories.
 
 * Often, changes associated with code refactoring do not get into change files
-  from nested directories, because refactoring is global with a search in all
-  files, including nested directories, and such changes are simply unprofitable
-  to selectively duplicate in all nested change files. This causes change
-  records to be skipped in change files from nested directories.
+  from nested directories, because a refactoring can be global with a search in
+  all files, including nested directories, and such changes are simply
+  unprofitable to selectively duplicate in all nested change files. This causes
+  change records to be skipped in change files from nested directories.
 
 * It is necessary to cut and transfer all changes not directly related to
-  sources outside the version control system or outside the integration system
-  from all change files if they need to be left only in the logs of the version
-  control system.
+  source files from all change files if they need to be left only in the logs
+  of the version control system.
 
 * Due to the ability to change the file of changes in subsequent commits
   anywhere, there is a desynchronization with changes in the version control
@@ -266,11 +265,11 @@ Disadvantages (Cons) of using a separate change file:
 
 * It is possible to accidentally commit a change file destined for the next and
   another commit. For example, at the time of the commit, continuing to edit it
-  (for example, in svn this is possible, in git it is not, because you need to
+  (for example, in SVN this is possible, in Git it is not, because you need to
   first add the file to the stage specifically for the commit)
 
 Conclusions.
 
-   The change file shows, ceteris paribus, a more convenient logging model,
-   because is a universal tool in the general case, where the advantages
-   outweigh the disadvantages.
+   The change file shows, ceteris paribus, a more convenient logging model in
+   different version control systems, because is an universal tool in the
+   general case, where the advantages outweigh the disadvantages.
