@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2023.11.08
+* 2023.11.09
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
@@ -53,22 +53,22 @@ Changelog files organization.
 
   ```
   <date>:
-  * <type>: [<location>:] <single-line-comment>
+  * <type>: [<location>:] [<self-hosted-issues>:] <single-line-comment>
 
   <date>:
-  * <type>: [<location>:] <single-line-comment>
+  * <type>: [<location>:] [<self-hosted-issues>:] <single-line-comment>
 
   ...
 
   <date>:
-  * <type>: [<location>:] <single-line-comment>
+  * <type>: [<location>:] [<self-hosted-issues>:] <single-line-comment>
   ```
 
   or
 
   ```
   <date>:
-  * <type>: [<location>:] <single-line-comment>
+  * <type>: [<location>:] [<self-hosted-issues>:] <single-line-comment>
             <single-line-comment>
             <single-line-comment>
             ...
@@ -118,8 +118,47 @@ Changelog files organization.
   Example:
 
   ```
-  dirA/dir1, dirA/dir3, dirC/*, dirC: fileA, fileB, fileC-*.txt
+  dirA/dir1, dirA/dir3, dirB/*, dirC: fileA, fileB, fileC-*.txt
   ```
+
+  `<self-hosted-issues>`:
+
+  Issues number list, where issues are self hosted (does not need a full url
+  link).
+
+  ```
+  #1, #02, #003
+  ```
+
+  If you want to put the issue full url link, then you should put it in the
+  comment body in the brackets and after the comment text:
+
+  ```
+  * <type>: ... (https://github.com/USER/REPO/issues/NUMBER1, https://github.com/USER/REPO/issues/NUMBER2, ...)
+  ```
+
+  Or put it in the next lines without brackets:
+
+  ```
+  * <type>: ...
+            https://github.com/USER/REPO/issues/NUMBER
+  ```
+
+  Better to put a message together with the issue url link after the link:
+
+  ```
+  * <type>: ...
+            https://github.com/USER/REPO/issues/NUMBER: <issue-url-message>
+  ```
+
+  > :information_source: Note:<br/>
+  > The `#xxx` is a common method to inject the commit message and commit hash
+  > into the GitHub Issue conversation:<br/>
+  > https://stackoverflow.com/questions/1687262/link-to-the-issue-number-on-github-within-a-commit-message
+
+  > :warning: Warning:<br/>
+  > If you try to rewrite the repository with commits containing `#xxx` reference or complete issue url `https://github.com/USER/REPO/issues/NUMBER`, then the GitHub adds the backtrack link into the issue conversation again:<br/>
+  > `A repository rewrite involves reappend all backtrack links to rewrited commits with issue links` : https://github.com/orgs/community/discussions/49227
 
   Rules for blocks with dates:
 
