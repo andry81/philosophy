@@ -1,5 +1,5 @@
 * git_branching_rules.md
-* 2023.12.25
+* 2023.12.26
 
 1. DESCRIPTION
 2. RULES
@@ -76,12 +76,12 @@ In the order of a server hook scripts execution:
    >
    > * `dev`               OK
    > * `feature/blabla`    REJECTED
-   >
+   ><br />
    > The `feature/blabla` contains a commit from a different user other than that who is pushing.
 
    All commits must be rejected because some of being pushed commits are rejected.
 
-   Each user must push self authored commits into `feature/*` or `dev` branch instead.
+   Each user must push self authored commits only.
 
 3. All commits must contain a unique user name.
    The server must contain the user list with user names and emails with the push privileges.
@@ -94,7 +94,7 @@ In the order of a server hook scripts execution:
    >
    > * `dev`               REJECTED
    > * `feature/blabla`    REJECTED
-   >
+   ><br />
    > The `dev` and `feature/blabla` contains a commit with a user `user` with different email `user-B@mail.com`.
 
    All commits must be rejected because some of being pushed commits are rejected.
@@ -115,10 +115,13 @@ In the order of a server hook scripts execution:
    >
    > * `dev`               OK
    > * `feature/foo`       REJECTED
-   >
-   > The `feature/foo` contains a commit unreachable from a being pushed branch - `feature/boo`.
+   ><br />
+   > The `feature/foo` contains a commit without a branch name or with a branch `feature/boo` in the metadata, which is either unexist or is not being pushed.
 
    All commits must be rejected because some of being pushed commits are rejected.
+
+   To push a commit with a different branch name in the metadata, you must include that branch in a push. Otherwise it looks like you try to push an incomplete set of commits.
+   This particular check on different branch name can be turned off by a configuration variable.
 
    **Note**:
 
