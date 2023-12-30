@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2023.11.09
+* 2023.12.30
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
@@ -181,14 +181,18 @@ Changelog files organization.
   * Lines must include changes only from the respective directory source and
     must exclude changes outside of the directory source:
 
-    * Exclude external depedencies as a part of VCS like `svn:externals` in
-      SVN and `.gitmodules` file change in Git.
+    * Exclude external depedencies as a part of VCS like `svn:externals` in the
+      SVN and `.gitmodules` file changes in the Git.
 
     * Exclude other VCS properties stored in the file system or behind it like
       `svn:ignore`/`svn:*` in SVN and
-      `.gitignore`/`.gitattributes`/etc files in Git.
+      `.gitignore`/`.gitattributes`/etc files in the Git.
 
     * Exclude VCS extensions like `.gitsvnextmodules` file and others.
+
+    * The root changelog may include the changes from a custom git externals
+      like [vcstool](https://github.com/dirk-thomas/vcstool) externals in the
+      `.externals` file.
 
   * `changelog.txt`, `userlog.md` and others must include all lines from the
     same files in nested directories.
@@ -230,7 +234,7 @@ sources in a separate directory and all subdirectories (an inclusive log):
 
 * Changes are stored separately from the source control system, so they can be
   retrieved, read or written separately from the source control system, and
-  also, they become shared if the source filess are stored or were stored in
+  also, they become shared if the source files are stored or were stored in
   several source control systems simultaneously or sequentially.
 
 * The change file is a part of the sources, and accordingly, it can be modified
@@ -260,8 +264,11 @@ sources in a separate directory and all subdirectories (an inclusive log):
 
 * When moving sources from a source control system to a source control system,
   or when moving a directory with sources within a source control system, the
-  history of this directory is also moved, because the change file, as a rule,
-  lays in the root of this directory and moves along with the sources.
+  history of this directory is also moved, because the changelog file, as a
+  rule, lays in the root directory and moves along with the root directory.
+  If a file or a directory is registered in the changelog and is moved to a
+  different repository or to a directory with different changelog file, then
+  the history in the changelog file can be moved too.
 
 * Changes that does not include source code changes can only be left to the
   source control system, which makes it easier to find changes only in the
