@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2023.12.30
+* 2023.12.31
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
@@ -148,7 +148,7 @@ Changelog files organization.
 
   ```
   * <type>: ...
-            https://github.com/USER/REPO/issues/NUMBER: <issue-url-message>
+            https://github.com/USER/REPO/issues/NUMBER: `<issue-url-message>`
   ```
 
   > :information_source: Note:<br/>
@@ -168,7 +168,7 @@ Changelog files organization.
     a day. For example, if one change made by `2023.06.15` but another
     by `2023.06.16`, then it is better to split it into 2 blocks. Or it can be
     left as a single block if changes has not been recorded specifically to
-    the day.
+    the day (squashed).
 
   * More than one block can has the same date.
 
@@ -268,12 +268,23 @@ sources in a separate directory and all subdirectories (an inclusive log):
   rule, lays in the root directory and moves along with the root directory.
   If a file or a directory is registered in the changelog and is moved to a
   different repository or to a directory with different changelog file, then
-  the history in the changelog file can be moved too.
+  the history in the changelog file can be moved (and merged) too.
 
 * Changes that does not include source code changes can only be left to the
   source control system, which makes it easier to find changes only in the
   source control system (changes in the source code may be not duplicated
   there).
+
+* You can make temporary branches with only one big commit long to store
+  already squashed Git changes (accumulated commit).  In that case you use the
+  commit command with ammend operation to accumulate changes. The changelog
+  file in such case can store a real not squashed history and then can be
+  merged with another branch changelog to merge history from an accumulated
+  commit branch.
+  This method is useful if you want then to use the Git squash on commits which
+  will be used for Git rebase or merge without actually the squash operation
+  (the not squashed history already saved for a squashed or accumulated
+  commit).
 
 Disadvantages (Cons) of using a separate change file:
 
