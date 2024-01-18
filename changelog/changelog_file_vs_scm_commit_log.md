@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2023.12.31
+* 2024.01.18
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
@@ -91,16 +91,16 @@ Changelog files organization.
   In sorted order:
 
   * `security`:
-    Change of sources with fix related to a security only.
+    A change of sources with fix related to a security only.
   * `fixed`:
-    Change of sources with fix of something not related to a security.
+    A change of sources with fix of something not related to a security.
   * `new`:
-    Change of sources with first time new implementation.
+    A change of sources with first time new implementation.
   * `changed`:
-    Change without fix or new implementation. Can include functionality add or
-    remove.
+    A change without fix or new implementation. Can include functionality add
+    or remove.
   * `refactor`:
-    Change related to a file system file/directory move/rename or sources
+    A change related to a file system file/directory move/rename or sources
     change without functionality change.
 
   `<location>`:
@@ -194,12 +194,17 @@ Changelog files organization.
       like [vcstool](https://github.com/dirk-thomas/vcstool) externals in the
       `.externals` file.
 
+    > :information_source: Note:<br/>
+    > The difference between a custom git externals and builtin
+    > externals is that the custom externals are not part of a VCS and so
+    > must be included in the changeset of a changelog file.
+
   * `changelog.txt`, `userlog.md` and others must include all lines from the
     same files in nested directories.
 
 * `userlog.md`:
 
-  Optional filtered markdown variant of the `changelog.txt` file which does
+  The optional filtered markdown variant of the `changelog.txt` file which does
   include only a most visible user changes.
 
   Format example:
@@ -224,12 +229,25 @@ Changelog files organization.
   Optional filtered markdown variant of the `userlog.md` file which does
   include only security lines.
 
+> :information_source: Note:<br/>
+> To compare `changelog.txt`, `userlog.md` and `seclog.md` between each other,
+> you can use `WinMerge` lines substitution regular expression filter from the
+> `Tools` menu:
+> ```
+> Find what: ^## (\d\d\d\d.\d\d.\d\d:)    Replace with: \1
+> ```
+> ```
+> Find what: ^\* (:[^:]+:)                Replace with: *
+> ```
+> After that you will be able to merge `changelog.txt` into `userlog.md` and
+> `seclog.md`.
+
 -------------------------------------------------------------------------------
 4. EXPLANATION
 -------------------------------------------------------------------------------
 Use an external file or files to describe the directory source changes in time.
 
-Advantages (Pros) of using a separate changelog file for changes only in the
+Advantages (Pros) of using a separate changelog file for changes only from the
 sources in a separate directory and all subdirectories (an inclusive log):
 
 * Changes are stored separately from the source control system, so they can be
@@ -237,9 +255,9 @@ sources in a separate directory and all subdirectories (an inclusive log):
   also, they become shared if the source files are stored or were stored in
   several source control systems simultaneously or sequentially.
 
-* The change file is a part of the sources, and accordingly, it can be modified
-  and merged along with other sources, which does not require special access
-  rights (except for access rights to the source files itself).
+* A changelog file is a part of the sources, and accordingly, it can be
+  modified and merged along with other sources, which does not require special
+  access rights (except for access rights to the source files itself).
 
   Examples:
 
@@ -256,11 +274,11 @@ sources in a separate directory and all subdirectories (an inclusive log):
   Thus, it is possible to add/modify/correct comments on changes in the past
   without any additional privileges.
 
-* The change file can be relatively easily changed (corrected/added/deleted)
-  anywhere in the file (and not just for the last (Git) commit or one at a time
-  (SVN) commit) in subsequent commits (the log in the control system, for
-  example, for the Git system had to would change with rewriting of all
-  dependent commits, and for the SVN system - for each commit separately).
+* A changelog file can be relatively easily changed (corrected/added/deleted)
+  anywhere in the file in subsequent commits.  Not just for the last Git commit
+  or one at a time SVN commit. The log in a VCS, for example, for the Git
+  system had to would change with rewriting of all dependent commits, and for
+  the SVN system - for each commit separately.
 
 * When moving sources from a source control system to a source control system,
   or when moving a directory with sources within a source control system, the
@@ -270,14 +288,18 @@ sources in a separate directory and all subdirectories (an inclusive log):
   different repository or to a directory with different changelog file, then
   the history in the changelog file can be moved (and merged) too.
 
-* Changes that does not include source code changes can only be left to the
+* The changes that does not include source code changes can only be left to the
   source control system, which makes it easier to find changes only in the
-  source control system (changes in the source code may be not duplicated
-  there).
+  source control system.
+
+  > :information_source: Note:<br/>
+  > The changes in the source code in such case can be ignored in a VCS log.
+  > But because a VCS has not yet be able to associate a part of a changelog
+  > file with a particular commit, you have to duplicate them in a VCS log.
 
 * You can make temporary branches with only one big commit long to store
   already squashed Git changes (accumulated commit).  In that case you use the
-  commit command with ammend operation to accumulate changes. The changelog
+  Git commit command with ammend operation to accumulate changes. The changelog
   file in such case can store a real not squashed history and then can be
   merged with another branch changelog to merge history from an accumulated
   commit branch.
@@ -286,47 +308,58 @@ sources in a separate directory and all subdirectories (an inclusive log):
   (the not squashed history already saved for a squashed or accumulated
   commit).
 
-Disadvantages (Cons) of using a separate change file:
+* The changelog file from one branch (parent branch) can contain the changelog
+  for another branch (child branch).
+  For example, you need to store a 3dparty sources with the author changelog
+  file, a readme file and etc, but you can not or must not add your own
+  changelog file, readme file and other files into the author sources (a clean
+  author sources in a child branch). In such case you can create a parent
+  branch with your changelog file, readme file, patch files and etc and record
+  changes from a child branch in the changelog file from a parent branch.
 
-* Changes to files that are not directly related to the source code may not be
-  included or registered in the change file (see the list above). This is
+Disadvantages (Cons) of using a separate changelog file:
+
+* The changes to files that are not directly related to the source code may not
+  be included or registered in the changelog file (see the list above). This is
   written down as a disadvantage, because in some or exceptional cases it makes
   sense to do so.
 
 * Errors in commits like "forgot to add file/directory",
-  "forgot to change file/property" cause a new commit in version control with a
-  message like "missed change", which is not included in the change file and
-  thus , not all source changes are reflected in the change file. In the Git
+  "forgot to change file/property" cause a new commit in a VCS log with a
+  message like "missed change", which is not included in the changelog file and
+  thus, not all source changes are reflected in a changelog file. In the Git
   system, it is also usually possible to change the last commit, and changes
   before the last commit are usually expensive (the destructive operation of
   rewriting all dependent commits).
 
-* As a rule, change files are located independently of each other, which leads
-  to duplication of text if it is necessary to duplicate all changes in all
-  change files from nested directories in change files from parent directories.
+* As a rule, changelog files are located independently to each other, which
+  leads to duplication of text if it is necessary to duplicate all changes in
+  all changelog files from nested directories in the changelog files from
+  parent directories.
 
-* Often, changes associated with code refactoring do not get into change files
-  from nested directories, because a refactoring can be global with a search in
-  all files, including nested directories, and such changes are simply
-  unprofitable to selectively duplicate in all nested change files. This causes
-  change records to be skipped in change files from nested directories.
+* Often, the changes associated with code refactoring do not get into changelog
+  files from nested directories, because a refactoring can be global with a
+  search in all files, including nested directories, and such changes are
+  simply unprofitable to selectively duplicate in all nested changelog files.
+  This causes changeset records in the changelog files from nested directories
+  to be skipped to record them.
 
 * It is necessary to cut and transfer all changes not directly related to
-  source files from all change files if they need to be left only in the logs
-  of the version control system.
+  source files from all changelog files if they need to be left only in the
+  logs of a VCS.
 
-* Due to the ability to change the file of changes in subsequent commits
-  anywhere, there is a desynchronization with changes in the version control
-  log if they are duplicated there (records are simply inconvenient or
-  expensive to change again in the version control logs).
+* Due to the ability to change the changelog file in subsequent commits
+  anywhere, there is a desynchronization with changes in a VCS log if they are
+  duplicated there (records are simply inconvenient or expensive to change
+  again in a VCS log).
 
-* It is possible to accidentally commit a change file destined for the next and
-  another commit. For example, at the time of the commit, continuing to edit it
-  (for example, in SVN this is possible, in Git it is not, because you need to
-  first add the file to the stage specifically for the commit)
+* It is possible to accidentally commit a changelog file destined for the next
+  or another commit. For example, at the time of the commit, continuing to edit
+  it (for example, in SVN this is possible, in Git it is not, because you need
+  to first add the file to the stage specifically for a commit)
 
 Conclusions.
 
-   The change file shows, ceteris paribus, a more convenient logging model in
-   different version control systems, because is an universal tool in the
+   The changelog file shows, ceteris paribus, a more convenient logging model
+   in different version control systems, because is an universal tool in the
    general case, where the advantages outweigh the disadvantages.
