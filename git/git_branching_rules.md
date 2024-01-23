@@ -1,8 +1,9 @@
 * git_branching_rules.md
-* 2023.12.26
+* 2024.01.23
 
 1. DESCRIPTION
 2. RULES
+3. FILES
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -127,3 +128,19 @@ In the order of a server hook scripts execution:
 
    > Such functionality is relied upon `git commit` command and may be omitted or not used by a user. So this must be somehow integrated into local user environment to automatically create such metadata in each user commit.
    > This will hold additional history of branches been committed and deleted. So is required the mechanism to print/show such branches in a user local environment additionally to the generic Git branches.
+
+-------------------------------------------------------------------------------
+3. FILES
+-------------------------------------------------------------------------------
+Here would be described several files related to the sources branching.
+
+1. `ISSUES.txt`
+
+   Describes the issues list in a project. Must be placed in the root directory in a single branch only, to avoid problems with the merge and duplication.
+
+2. `TODO.txt`
+
+   Describes the todo list in a section of a project.
+   Can be placed in a subdirectory in a project. Must not duplicates items from a parent directory.
+   Can be placed in multiple branches to describe a particular todo list in a branch.
+   You can create a temporary branch said `dev/todo-thing` with a change in the `TODO.txt` if do not want to put the change in a history.
