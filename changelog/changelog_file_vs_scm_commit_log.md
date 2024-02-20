@@ -1,10 +1,11 @@
 * changelog_file_vs_scm_commit_log.md
-* 2024.01.18
+* 2024.02.20
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
 3. FORMAT DESCRIPTION
 4. EXPLANATION
+5. DEVELOPMENT TOOLS
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -363,3 +364,19 @@ Conclusions.
    The changelog file shows, ceteris paribus, a more convenient logging model
    in different version control systems, because is an universal tool in the
    general case, where the advantages outweigh the disadvantages.
+
+-------------------------------------------------------------------------------
+5. DEVELOPMENT TOOLS
+-------------------------------------------------------------------------------
+Some development tools to help compare and merge `changelog.txt`, `userlog.md`
+and `seclog.md`.
+
+1. Notepad++ MultiReplace plugin
+
+  Can replace multiple pairs of strings using regular expressions, intermediate
+  variables and a micro code with conditional expressions in the `Replace with`
+  input field.
+
+  See for details:
+
+  https://github.com/andry81/tacklebar/tree/HEAD/deploy/notepad%2B%2B/plugins/MultiReplace

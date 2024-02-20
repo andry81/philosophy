@@ -141,6 +141,6 @@ Here would be described several files related to the sources branching.
 2. `TODO.txt`
 
    Describes the todo list in a section of a project.
-   Can be placed in a subdirectory in a project. Must not duplicates items from a parent directory.
+   Can be placed in a subdirectory in a project. Must not duplicate items from a parent directory.
    Can be placed in multiple branches to describe a particular todo list in a branch.
    You can create a temporary branch said `dev/todo-thing` with a change in the `TODO.txt` if do not want to put the change in a history.
