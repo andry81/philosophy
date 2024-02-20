@@ -230,19 +230,6 @@ Changelog files organization.
   Optional filtered markdown variant of the `userlog.md` file which does
   include only security lines.
 
-> :information_source: Note:<br/>
-> To compare `changelog.txt`, `userlog.md` and `seclog.md` between each other,
-> you can use `WinMerge` lines substitution regular expression filter from the
-> `Tools` menu:
-> ```
-> Find what: ^## (\d\d\d\d.\d\d.\d\d:)    Replace with: \1
-> ```
-> ```
-> Find what: ^\* (:[^:]+:)                Replace with: *
-> ```
-> After that you will be able to merge `changelog.txt` into `userlog.md` and
-> `seclog.md`.
-
 -------------------------------------------------------------------------------
 4. EXPLANATION
 -------------------------------------------------------------------------------
@@ -380,3 +367,22 @@ and `seclog.md`.
   See for details:
 
   https://github.com/andry81/tacklebar/tree/HEAD/deploy/notepad%2B%2B/plugins/MultiReplace
+
+  You can use these MultiReplace lists to strip (undecorate) the `userlog.md`,
+  merge it from the `changelog.txt` and then, redecorate it back:
+
+  https://github.com/andry81/tacklebar/tree/HEAD/deploy/notepad%2B%2B/plugins/MultiReplace/Lists/winmerge
+
+2. Winmerge
+
+  To compare `changelog.txt`, `userlog.md` and `seclog.md` between each other,
+  you can use `WinMerge` lines substitution regular expression filter from the
+  `Tools` menu:
+
+  Find what | Replace with | Regular expression
+  -|-|-
+  ^## (\d\d\d\d.\d\d.\d\d:) | \1 | [x]
+  ^\* (:[^:]+:) | * | [x]
+
+  After that you will be able to merge `changelog.txt` into `userlog.md` and
+  `seclog.md`.
