@@ -1,11 +1,14 @@
 * changelog_file_vs_scm_commit_log.md
-* 2024.02.20
+* 2024.02.28
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
 3. FORMAT DESCRIPTION
 4. EXPLANATION
 5. DEVELOPMENT TOOLS
+6. RELATED RESOURCES
+7. KNOWN ISSUES
+<br />7.1. Winmerge Substitution Filter does not work as expected
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -103,6 +106,11 @@ Changelog files organization.
   * `refactor`:
     A change related to a file system file/directory move/rename or sources
     change without functionality change.
+
+  > :information_source: Note:<br/>
+  > All types here is a matter of a personal choice. Here is described only a generic set of changelog message types for a manual typing.
+  > For example, you can use other changelog message types like: `notice`, `warning`, `error`, `hint`, `doc` and etc.
+  > Each changelog message type has sence in a particular sources context.
 
   `<location>`:
 
@@ -208,22 +216,54 @@ Changelog files organization.
   The optional filtered markdown variant of the `changelog.txt` file which does
   include only a most visible user changes.
 
-  Format example:
+  Example:
 
   ```
   > :information_source: this log lists user most visible changes
 
   > :warning: to find all changes use [changelog.txt](https://github.com/USER/REPO/tree/HEAD/changelog.txt) file
 
-  > :information_source: Legend: :shield: - security; :wrench: - fixed; :new: - new; :pencil: - changed; :twisted_rightwards_arrows: - refactor
+  > :open_book: Explanation: https://gist.github.com/andry81/d278e6d129ca1af326eafb67470a2ae3
+
+  > :scroll: Legend: :shield: - security; :wrench: - fixed; :new: :sparkles: - new; :pencil: - changed; :twisted_rightwards_arrows: - refactor
 
   ## YYYY.MM.DD:
-  * :shield: security: ...
+  * :shield: security ...
   * :wrench: fixed: ...
-  * :new: new: ...
+  * :new: new: :sparkles: ...
   * :pencil: changed: ...
   * :twisted_rightwards_arrows: refactor: ...
   ```
+
+  Formatted example:
+
+  > :information_source: this log lists user most visible changes
+
+  > :warning: to find all changes use [changelog.txt](https://github.com/USER/REPO/tree/HEAD/changelog.txt) file
+
+  > :open_book: Explanation: https://gist.github.com/andry81/d278e6d129ca1af326eafb67470a2ae3
+
+  > :scroll: Legend: :shield: - security; :wrench: - fixed; :new: :sparkles: - new; :pencil: - changed; :twisted_rightwards_arrows: - refactor
+
+  ## YYYY.MM.DD:
+  * :shield: security ...
+  * :wrench: fixed: ...
+  * :new: new: :sparkles: ...
+  * :pencil: changed: ...
+  * :twisted_rightwards_arrows: refactor: ...
+
+  Other changelog message types and icon examples:
+
+  Type | Icon | Code
+  -|-|-
+  `new` | :star:, :star2:, :sparkles: | `:star:`, `:star2:`, `:sparkles:`
+  `fixed` | :hammer_and_wrench:, :hammer: | `:hammer_and_wrench:`, `:hammer:`
+  `changed` | :memo: | `:memo:`
+  `doc` | :notebook:, :open_book:, :page_with_curl:, :scroll:, :books: | `:notebook:`, `:open_book:`, `:page_with_curl:`, `:scroll:`, `:books:`
+  `notice` | :information_source:, &#8505;, &#9432;, 🛈 | `:information_source:`, `&#8505;`, `&#9432;`, `&#128712;`/`F0 9F 9B 88`
+  `warning` | :warning: | `:warning:`
+  `error` | :no_entry_sign:, :no_entry:, :bangbang:, :exclamation:, :x: | `:no_entry_sign:`, `:no_entry:`, `:bangbang:`, `:exclamation:`, `:x:`
+  `hint` | :bulb:, :point_up: | `:bulb:`, `:point_up:`
 
 * `seclog.md`
 
@@ -381,8 +421,38 @@ and `seclog.md`.
 
   Find what | Replace with | Regular expression
   -|-|-
-  ^## (\d\d\d\d.\d\d.\d\d:) | \1 | [x]
-  ^\* (:[^:]+:) | * | [x]
+  ^##\s+(\d\d\d\d.\d\d.\d\d:) | \1 | [x]
+  ^(\*\s+):[^:]+:\s+([a-z]+:\s+)(:[^:]+:\s*)* | \1\2 | [x]
 
   After that you will be able to merge `changelog.txt` into `userlog.md` and
   `seclog.md`.
+
+-------------------------------------------------------------------------------
+6. RELATED RESOURCES
+-------------------------------------------------------------------------------
+### Complete list of github markdown emoji markup
+
+https://gist.github.com/rxaviers/7360908
+
+### emoji-cheat-sheet
+
+https://github.com/ikatyang/emoji-cheat-sheet
+
+### Git Commit Message StyleGuide
+
+https://github.com/slashsbin/styleguide-git-commit-message
+
+### Gitmoji
+
+https://gitmoji.dev/<br />
+https://github.com/carloscuesta/gitmoji
+
+-------------------------------------------------------------------------------
+7. KNOWN ISSUES
+-------------------------------------------------------------------------------
+&nbsp;
+-------------------------------------------------------------------------------
+7.1. Winmerge Substitution Filter does not work as expected
+-------------------------------------------------------------------------------
+https://github.com/WinMerge/winmerge/issues/2221 :
+`Poor compare experience with Substitution Filters`
