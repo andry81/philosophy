@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2024.02.28
+* 2024.03.04
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
@@ -228,7 +228,7 @@ Changelog files organization.
   > :scroll: Legend: :shield: - security; :wrench: - fixed; :new: :sparkles: - new; :pencil: - changed; :twisted_rightwards_arrows: - refactor
 
   ## YYYY.MM.DD:
-  * :shield: security ...
+  * :shield: security: ...
   * :wrench: fixed: ...
   * :new: new: :sparkles: ...
   * :pencil: changed: ...
@@ -246,7 +246,7 @@ Changelog files organization.
   > :scroll: Legend: :shield: - security; :wrench: - fixed; :new: :sparkles: - new; :pencil: - changed; :twisted_rightwards_arrows: - refactor
 
   ## YYYY.MM.DD:
-  * :shield: security ...
+  * :shield: security: ...
   * :wrench: fixed: ...
   * :new: new: :sparkles: ...
   * :pencil: changed: ...
@@ -421,7 +421,7 @@ and `seclog.md`.
 
   Find what | Replace with | Regular expression
   -|-|-
-  ^##\s+(\d\d\d\d.\d\d.\d\d:) | \1 | [x]
+  ^##\s+(\d\d\d\d([.-])\d\d\2\d\d:) | \1 | [x]
   ^(\*\s+):[^:]+:\s+([a-z]+:\s+)(:[^:]+:\s*)* | \1\2 | [x]
 
   After that you will be able to merge `changelog.txt` into `userlog.md` and
