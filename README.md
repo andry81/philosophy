@@ -1,1 +1,1 @@
-<p align="center">Philosophy, principles, reviews and issues.</p>
+<p align="center">Philosophy, principles, methods, reviews and issues.</p>
