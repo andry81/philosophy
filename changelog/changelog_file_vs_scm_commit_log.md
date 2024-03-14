@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2024.03.04
+* 2024.03.14
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
@@ -210,6 +210,11 @@ Changelog files organization.
 
   * `changelog.txt`, `userlog.md` and others must include all lines from the
     same files in nested directories.
+
+  * If a `changelog.txt` is extracted from another project or directory, then
+    you can leave the old lines and split them from the new lines using:
+    `===============================================================================`
+    as a separator between the blocks.
 
 * `userlog.md`:
 
@@ -433,6 +438,11 @@ and `seclog.md`.
 ### Complete list of github markdown emoji markup
 
 https://gist.github.com/rxaviers/7360908
+
+### Emoji Mart
+
+https://missiveapp.com/open/emoji-mart
+https://github.com/missive/emoji-mart
 
 ### emoji-cheat-sheet
 
