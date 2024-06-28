@@ -11,6 +11,8 @@
 <br />5.3. tar
 <br />5.4. git
 6. SERVER URL COMMANDS
+7. CLIENT CONSOLE COMMANDS
+<br />7.1. svnrdump
 
 
 -------------------------------------------------------------------------------
@@ -140,3 +142,15 @@ Use scripts:
 ### Repository refresh
 
 > https://sourceforge.net/p/{PROJECT}/{REPO}/refresh
+
+-------------------------------------------------------------------------------
+7. CLIENT CONSOLE COMMANDS
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+7.1. svnrdump
+-------------------------------------------------------------------------------
+
+### SVN remote repository dump into file
+
+> svnrdump dump https://svn.code.sf.net/p/{PROJECT}/{REPO} > {REPO}-old.dump
