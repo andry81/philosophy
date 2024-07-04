@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2024.03.14
+* 2024.07.04
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
@@ -349,6 +349,10 @@ sources in a separate directory and all subdirectories (an inclusive log):
   author sources in a child branch). In such case you can create a parent
   branch with your changelog file, readme file, patch files and etc and record
   changes from a child branch in the changelog file from a parent branch.
+
+* Retains the change order of the sources after a branch Git rebase because
+  the Git rebase command will automatically merge a changelog file with
+  retained blocks date sequence.
 
 Disadvantages (Cons) of using a separate changelog file:
 
