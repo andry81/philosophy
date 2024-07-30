@@ -1,5 +1,5 @@
 * git_branching_rules.md
-* 2024.01.23
+* 2024.07.30
 
 1. DESCRIPTION
 2. RULES
@@ -106,7 +106,62 @@ In the order of a server hook scripts execution:
 
    If the list does contain a user with not unique name or email versus the repository, then the administrator user must fix the list.
 
-4. [OPTIONAL] All commits must contain a current branch name in the metadata.
+4. [OPTIONAL] (See details described in the `changelog_file_vs_scm_commit_log.md`)
+   All commits must contain a changelog file at least in the root directory and must contain changes in those changelog files where directories with a changelog file contains the commit changes.
+   There would be a pre-commit hook which will block to commit if a commit does not have a changelog file in the root directory or changes in those changelog files where directories with a changelog file contains the commit changes.
+
+   **Example**:
+
+   > User `user` does push to branches:
+   >
+   > * `dev`               REJECTED
+   > * `feature/blabla`    REJECTED
+   ><br />
+   > The `dev` and `feature/blabla` contains a commit without a changelog file or a changelog file does not contain appropriate changes.
+
+   All commits must be rejected because some of being pushed commits are rejected.
+
+   Each user must record or reflect the changes made in each commit in the appropriate changelog file.
+
+   Does not matter which one changes contained in a changelog file.
+   Is matter if a changelog file exists, then it must has changes for a directory it contained in if the directory files are changed in the commit.
+
+5. [OPTIONAL] (See details described in the `changelog_file_vs_scm_commit_log.md`)
+   The server must contain the user list with user names and emails with the push privileges as described before.
+   All commits with a changelog file must contain an authors list per each changelog line with changes description.
+   There would be a pre-commit hook which will block to commit if one, a set or all of these are not met in the order of appearance:
+     * a commit does not have an authors list in changes of at least in one changelog file.
+     * a not merge commit does not have the author which is authored the commit in the list of authors in changes of a changelog file.
+     * a merge commit does not have the author which is authored a parent (or a parent of the parent and so on recursively until a not merge commit) commit in the list of authors in changes of a changelog file of the merge commit.
+
+   **Example**:
+
+   > User `user` does push to branches:
+   >
+   > * `dev`               REJECTED
+   > * `feature/blabla`    REJECTED
+   ><br />
+   > The `dev` and `feature/blabla` contains a not merge commit with a changelog file which does contain changes with description but without the author user name in at least one authors list.
+
+   All commits must be rejected because some of being pushed commits are rejected.
+
+   Each user must record or reflect only the its own changes in each not merge commit. If not, then a not merge commit must be split and been committed by different authors.
+   This particular check for a not merge commit can be turned off by a configuration variable.
+
+   Each user must merge only those not merged commits which authors does contain in changelog file authors list of a resulted merge commit. If at least one parent commit is authored by the author not in at least one authors list of a merge commit changlog file, then a merge commit must be rejected.
+   This particular check for a merge commit can be turned off by a configuration variable.
+
+   The rule exists to control the changes reflection within a changelog file from a parent not merge commit in case of a merge commit and within a changelog file from a not merge commit.
+
+   **Note**:
+
+   > Such functionality is affected by `git commit` command and may be omitted or not used by a user. So this must be somehow integrated into local user environment to help user to automatically generate an appropriate author list in changes of each changelog file before made a commit.
+
+   **Note**:
+
+   > A merge commit may contain changes not been recorded or reflected in a parent commit (a change description without an author). Or a change description may change after the merge (a change with the same author but with altered description). This rule does not track or reject such implications.
+
+6. [OPTIONAL] All commits must contain a current branch name in the metadata.
    If some commits does not contain a branch name or does contain unexisted/unreachable from being pushed branch name, then they must be rejected to push.
    There would be a pre-commit hook which will block to push such commits.
 
@@ -126,8 +181,12 @@ In the order of a server hook scripts execution:
 
    **Note**:
 
-   > Such functionality is relied upon `git commit` command and may be omitted or not used by a user. So this must be somehow integrated into local user environment to automatically create such metadata in each user commit.
+   > Such functionality is affected by `git commit` command and may be omitted or not used by a user. So this must be somehow integrated into local user environment to automatically create such metadata in each user commit.
    > This will hold additional history of branches been committed and deleted. So is required the mechanism to print/show such branches in a user local environment additionally to the generic Git branches.
+
+   **Note**:
+
+   > Such metadata can help in an appropriate branch colorization in the GUI software, because branch names in a commit metadata will exist even if a Git branch name contained the commit is removed or renamed a long ago.
 
 -------------------------------------------------------------------------------
 3. FILES
