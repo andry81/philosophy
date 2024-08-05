@@ -1,5 +1,5 @@
 * git_branching_rules.md
-* 2024.07.30
+* 2024.08.05
 
 1. DESCRIPTION
 2. RULES
@@ -13,7 +13,10 @@ Git branches organization.
 -------------------------------------------------------------------------------
 2. RULES
 -------------------------------------------------------------------------------
-In the order of a server hook scripts execution:
+All rules here must have an optionality flag to enable/disable a particular
+hook and its children.
+In case of a specific child check, there would be a nested variable to
+enable/disable such a check.
 
 1. There is must already exists branches, where a user can push.
    There would be a pre-commit hook which will block to push to an unexisted or a restricted branch.
@@ -106,9 +109,36 @@ In the order of a server hook scripts execution:
 
    If the list does contain a user with not unique name or email versus the repository, then the administrator user must fix the list.
 
-4. [OPTIONAL] (See details described in the `changelog_file_vs_scm_commit_log.md`)
-   All commits must contain a changelog file at least in the root directory and must contain changes in those changelog files where directories with a changelog file contains the commit changes.
-   There would be a pre-commit hook which will block to commit if a commit does not have a changelog file in the root directory or changes in those changelog files where directories with a changelog file contains the commit changes.
+4. All commits must contain a current branch name in the metadata.
+   If some commits does not contain a branch name or does contain unexisted/unreachable from being pushed branch name, then they must be rejected to push.
+   There would be a pre-commit hook which will block to push such commits.
+
+   **Example**:
+
+   > User `user` does push to branches:
+   >
+   > * `dev`               OK
+   > * `feature/foo`       REJECTED
+   ><br />
+   > The `feature/foo` contains a commit without a branch name or with a branch `feature/boo` in the metadata, which is either unexist or is not being pushed.
+
+   All commits must be rejected because some of being pushed commits are rejected.
+
+   To push a commit with a different branch name in the metadata, you must include that branch in a push. Otherwise it looks like you try to push an incomplete set of commits.
+
+   **Note**:
+
+   > Such functionality is affected by `git commit` command and may be omitted or not used by a user. So this must be somehow integrated into local user environment to automatically create such metadata in each user commit.
+   > This will hold additional history of branches been committed and deleted. So is required the mechanism to print/show such branches in a user local environment additionally to the generic Git branches.
+
+   **Note**:
+
+   > Such metadata can help in an appropriate branch colorization in the GUI software, because branch names in a commit metadata will exist even if a Git branch name contained the commit is removed or renamed a long ago.
+
+5. The hooks over a changelog file in the source tree (see details described in the `changelog_file_vs_scm_commit_log.md`).
+
+5.1. All commits must contain a changelog file at least in the root directory and must contain changes in those changelog files where directories with a changelog file contains the commit changes.
+     There would be a pre-commit hook which will block to commit if a commit does not have a changelog file in the root directory or does not have changes in those changelog files where directories with a changelog file contains the commit changes.
 
    **Example**:
 
@@ -126,13 +156,12 @@ In the order of a server hook scripts execution:
    Does not matter which one changes contained in a changelog file.
    Is matter if a changelog file exists, then it must has changes for a directory it contained in if the directory files are changed in the commit.
 
-5. [OPTIONAL] (See details described in the `changelog_file_vs_scm_commit_log.md`)
-   The server must contain the user list with user names and emails with the push privileges as described before.
-   All commits with a changelog file must contain an authors list per each changelog line with changes description.
-   There would be a pre-commit hook which will block to commit if one, a set or all of these are not met in the order of appearance:
-     * a commit does not have an authors list in changes of at least in one changelog file.
-     * a not merge commit does not have the author which is authored the commit in the list of authors in changes of a changelog file.
-     * a merge commit does not have the author which is authored a parent (or a parent of the parent and so on recursively until a not merge commit) commit in the list of authors in changes of a changelog file of the merge commit.
+5.2. The server must contain the user list with user names and emails with the push privileges as described before.
+     All commits with a changelog file must contain an authors list per each changelog line with changes description.
+     There would be a pre-commit hook which will block to commit if one, a set or all of these are not met in the order of appearance:
+   * a commit does not have an authors list in changes of at least in one changelog file.
+   * a not merge commit does not have the author which is authored the commit in the list of authors in changes of a changelog file.
+   * a merge commit does not have the author which is authored a parent (or a parent of the parent and so on recursively until a not merge commit) commit in the list of authors in changes of a changelog file of the merge commit.
 
    **Example**:
 
@@ -161,32 +190,6 @@ In the order of a server hook scripts execution:
 
    > A merge commit may contain changes not been recorded or reflected in a parent commit (a change description without an author). Or a change description may change after the merge (a change with the same author but with altered description). This rule does not track or reject such implications.
 
-6. [OPTIONAL] All commits must contain a current branch name in the metadata.
-   If some commits does not contain a branch name or does contain unexisted/unreachable from being pushed branch name, then they must be rejected to push.
-   There would be a pre-commit hook which will block to push such commits.
-
-   **Example**:
-
-   > User `user` does push to branches:
-   >
-   > * `dev`               OK
-   > * `feature/foo`       REJECTED
-   ><br />
-   > The `feature/foo` contains a commit without a branch name or with a branch `feature/boo` in the metadata, which is either unexist or is not being pushed.
-
-   All commits must be rejected because some of being pushed commits are rejected.
-
-   To push a commit with a different branch name in the metadata, you must include that branch in a push. Otherwise it looks like you try to push an incomplete set of commits.
-   This particular check on different branch name can be turned off by a configuration variable.
-
-   **Note**:
-
-   > Such functionality is affected by `git commit` command and may be omitted or not used by a user. So this must be somehow integrated into local user environment to automatically create such metadata in each user commit.
-   > This will hold additional history of branches been committed and deleted. So is required the mechanism to print/show such branches in a user local environment additionally to the generic Git branches.
-
-   **Note**:
-
-   > Such metadata can help in an appropriate branch colorization in the GUI software, because branch names in a commit metadata will exist even if a Git branch name contained the commit is removed or renamed a long ago.
 
 -------------------------------------------------------------------------------
 3. FILES
