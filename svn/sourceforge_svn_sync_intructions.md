@@ -1,18 +1,18 @@
 * sourceforge_svn_sync_intructions.md
-* 2024.06.28
+* 2024.09.18
 
 1. DESCRIPTION
 2. OFFICIAL DOCUMENTATION
 3. SERVER CREDENTIALS
 4. LOGIN CONSOLE COMMANDS
 5. SERVER CONSOLE COMMANDS
-<br />5.1. rsync
-<br />5.2. svnadmin
-<br />5.3. tar
-<br />5.4. git
+<br />5.1. svnadmin
+<br />5.2. tar
+<br />5.3. git
 6. SERVER URL COMMANDS
 7. CLIENT CONSOLE COMMANDS
-<br />7.1. svnrdump
+<br />7.1. rsync
+<br />7.2. svnrdump
 
 
 -------------------------------------------------------------------------------
@@ -76,19 +76,7 @@ https://sourceforge.net/p/forge/documentation/SSH/<br />
 -------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------
-5.1. rsync
--------------------------------------------------------------------------------
-
-### Download and sync
-
-> rsync -rvz --delete-excluded --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r svn.code.sf.net::p/PROJECTNAME/REPOSITORY .
-
-### Upload and sync
-
-> rsync -rvz --delete-excluded . svn.code.sf.net::p/PROJECTNAME/REPOSITORY
-
--------------------------------------------------------------------------------
-5.2. svnadmin
+5.1. svnadmin
 -------------------------------------------------------------------------------
 
 ### SVN bare database dump into file
@@ -105,7 +93,7 @@ https://sourceforge.net/p/forge/documentation/SSH/<br />
 > svnadmin load /home/svn/p/{PROJECT}/{REPO} < /home/users/{USER}/{REPO}-new.dump
 
 -------------------------------------------------------------------------------
-5.3. tar
+5.2. tar
 -------------------------------------------------------------------------------
 
 ### SVN dump file compress into archive
@@ -121,7 +109,7 @@ https://sourceforge.net/p/forge/documentation/SSH/<br />
 > tar -xf {REPO}-new.dump.tar.xz {REPO}-new.dump
 
 -------------------------------------------------------------------------------
-5.4. git
+5.3. git
 -------------------------------------------------------------------------------
 
 ### Enable not fast-forward force push
@@ -132,8 +120,8 @@ OR
 
 Use scripts:
 
-* https://github.com/andry81/gitcmd/tree/HEAD/git_bare_config_allow_rewrite.sh
-* https://github.com/andry81/gitcmd/tree/HEAD/git_bare_config_deny_rewrite.sh
+* https://github.com/andry81/gitcmd/tree/HEAD/scripts/git_bare_config_allow_rewrite.sh
+* https://github.com/andry81/gitcmd/tree/HEAD/scripts/git_bare_config_deny_rewrite.sh
 
 -------------------------------------------------------------------------------
 6. SERVER URL COMMANDS
@@ -148,7 +136,19 @@ Use scripts:
 -------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------
-7.1. svnrdump
+7.1. rsync
+-------------------------------------------------------------------------------
+
+### Download and sync
+
+> rsync -rvz --delete-excluded --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r svn.code.sf.net::p/PROJECTNAME/REPOSITORY .
+
+### Upload and sync
+
+> rsync -rvz --delete-excluded . svn.code.sf.net::p/PROJECTNAME/REPOSITORY
+
+-------------------------------------------------------------------------------
+7.2. svnrdump
 -------------------------------------------------------------------------------
 
 ### SVN remote repository dump into file
