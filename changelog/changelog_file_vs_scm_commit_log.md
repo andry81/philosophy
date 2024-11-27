@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2024.10.28
+* 2024.11.27
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
@@ -119,7 +119,7 @@ Changelog files organization.
   <file-path-list>
   ```
 
-  or
+  or with a cross product of paths:
 
   ```
   <dir-path-list>[: <file-path-list>]
@@ -131,26 +131,41 @@ Changelog files organization.
   dirA/dir1, dirA/dir3, dirB/*, dirC: fileA, fileB, fileC-*.txt
   ```
 
+  Resulted cross product:
+
+  * dirA/dir1/fileA
+  * dirA/dir1/fileB
+  * dirA/dir1/fileC-*.txt
+  * dirA/dir3/fileA
+  * dirA/dir3/fileB
+  * dirA/dir3/fileC-*.txt
+  * dirB/*/fileA
+  * dirB/*/fileB
+  * dirB/\*/fileC-*.txt
+  * dirC/fileA
+  * dirC/fileB
+  * dirC/fileC-*.txt
+
   > :information_source: Note:<br/>
-  > If the expression has a globbing character (`*`, `?`) and does not have a slash character, then the scope has a multi level recursion. So the `**/<file>` and `<file>` paths are equal.
-  > To specifically limit the scope you have to particularly use a path with a slash character.
+  > If the `<location>` expression has a globbing character (`*`, `?`) and does not have a slash character, then the scope has a multi level recursion. So the `**/<file>` and `<file>` paths are equal.
+  > To specifically limit the scope of a path, you have to particularly use a path with a slash character.
 
   Examples:
 
-  * `<file>`, `**/<file>`         - a file somethere in a source tree.
+  * `<file>`, `**/<file>`         - a file somethere in a source tree, a path with multi level recursion.
   * `/<file>`                     - a file in the root directory.
   * `<dir>`, `**/<dir>`           - somethere in a directory of a source tree.
   * `/<dir>`                      - somethere in a directory in the root directory.
   * `<dir>/<file>`                - a file somethere in a directory in a source tree.
   * `<dir>/<dir>`                 - somethere in a directory of a directory in a source tree.
-  * `*/<file>`, `<dir>/*/<file>`  - partial path to a file with single level recursion.
-  * `*/<dir>`, `<dir>/*/<dir>`    - partial path to a directory with single level recursion.
+  * `*/<file>`, `<dir>/*/<file>`  - partial path to a file with a single level recursion.
+  * `*/<dir>`, `<dir>/*/<dir>`    - partial path to a directory with a single level recursion.
   * `<dir>/**/<file>`             - partial path to a file with multi level recursion.
   * `<dir>/**/<dir>`              - partial path to a directory with multi level recursion.
 
   > :information_source: Note:<br/>
   > There is no clear distinction between a file or a directory in the end of a path, because `<location>` depends on what the commit has.
-  > So in case of ambiguous path, which is not much frequent case, you must use the `<location>` with the leading slash.
+  > So in case of an ambiguous path, which is not much frequent case, you must use the `<location>` with the leading slash.
 
   `<self-hosted-issues>`:
 
