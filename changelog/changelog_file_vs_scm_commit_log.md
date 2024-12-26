@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2024.11.27
+* 2024.12.26
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
@@ -263,6 +263,11 @@ Changelog files organization.
     `===============================================================================`
     as a separator between the blocks.
 
+  * A change can be represented with multiple lines of different `<type>`.
+    For example, you can write a fix description for the `fixed:` line, but
+    additionally add a set of `changed:` lines to describe what is changed
+    beside the fix.
+
 * `userlog.md`:
 
   The optional filtered markdown variant of the `changelog.txt` file which does
@@ -308,14 +313,16 @@ Changelog files organization.
 
   Type | Icon | Code
   -|-|-
-  `new` | :star:, :star2:, :sparkles: | `:star:`, `:star2:`, `:sparkles:`
-  `fixed` | :hammer_and_wrench:, :hammer: | `:hammer_and_wrench:`, `:hammer:`
-  `changed` | :memo: | `:memo:`
-  `doc` | :notebook:, :open_book:, :page_with_curl:, :scroll:, :books: | `:notebook:`, `:open_book:`, `:page_with_curl:`, `:scroll:`, `:books:`
+  `security` | :shield:, :lock:, :closed_lock_with_key: | `:shield:`, `:lock:`, `:closed_lock_with_key:`
+  `new` | :new:, :star:, :star2:, :eight_pointed_black_star:, :stars:, :sparkle:, :sparkler:, :sparkles:, :small_blue_diamond:, :diamonds:, :gem:, :zap:, :ribbon: | `:new:`, `:star:`, `:star2:`, `:eight_pointed_black_star:`, `:stars:`, `:sparkle:`, `:sparkler:`, `:sparkles:`, `:small_blue_diamond:`, `:diamonds:`, `:gem:`, `:zap:`, `:ribbon:`
+  `fixed` | :wrench:, :hammer_and_wrench:, :hammer:, :nut_and_bolt: | `:wrench:`, `:hammer_and_wrench:`, `:hammer:`, `:nut_and_bolt:`
+  `changed` | :memo:, :pencil:, :pencil2:, :black_nib: | `:memo:`, `:pencil:`, `:pencil2:`, `:black_nib:`
+  `doc` | :notebook:, :book:, :open_book:, :closed_book:, :page_with_curl:, :scroll:, :page_facing_up:, :books: | `:notebook:`, `:book:`, `:open_book:`, `:closed_book:`, `:page_with_curl:`, `:scroll:`, `:page_facing_up:`, `:books:`
   `notice` | :information_source:, &#8505;, &#9432;, 🛈 | `:information_source:`, `&#8505;`, `&#9432;`, `&#128712;`/`F0 9F 9B 88`
   `warning` | :warning: | `:warning:`
   `error` | :no_entry_sign:, :no_entry:, :bangbang:, :exclamation:, :x: | `:no_entry_sign:`, `:no_entry:`, `:bangbang:`, `:exclamation:`, `:x:`
   `hint` | :bulb:, :point_up: | `:bulb:`, `:point_up:`
+  `refactor` | :twisted_rightwards_arrows:, :recycle:, :repeat:, :arrows_clockwise:, :arrows_counterclockwise: | `:twisted_rightwards_arrows:`, `:recycle:`, `:repeat:`, `:arrows_clockwise:`, `:arrows_counterclockwise:`
 
 * `seclog.md`
 
