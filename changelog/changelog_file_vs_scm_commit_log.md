@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2024.12.26
+* 2025.01.03
 
 1. DESCRIPTION
 2. REPOSITORY DIRECTORIES EXAMPLE
@@ -363,9 +363,10 @@ sources in a separate directory and all subdirectories (an inclusive log):
 
 * A changelog file can be relatively easily changed (corrected/added/deleted)
   anywhere in the file in subsequent commits. Not just for the last Git commit
-  or one at a time SVN commit. The log in a VCS, for example, for the Git
-  system had to would change with rewriting of all dependent commits, and for
-  the SVN system - for each commit separately.
+  or one at a time SVN commit. In another words, without the changelog file for
+  the Git system with the rebase or merge you have to manually edit and change
+  comments for all the rest following commits, and for the SVN system even for
+  each commit separately.
 
 * When moving sources from a source control system to a source control system,
   or when moving a directory with sources within a source control system, the
@@ -394,6 +395,20 @@ sources in a separate directory and all subdirectories (an inclusive log):
   will be used for Git rebase or merge without actually the squash operation
   (the not squashed history already saved for a squashed or accumulated
   commit).
+
+* A branch rewrite operation does not rewrite the change log file as happens
+  for the log in a commit's comments. You have to specifically rewrite the
+  changelog file to rewrite and/or lose the log history. So the changelog file
+  prevents accidental lost of the sources change history behind the rewrite,
+  squash or merge operations.
+
+  But on another hand it prevents an easy edit of the log history to intently
+  cut the history together with a commit.
+
+  > :information_source: Note:<br/>
+  > This exists because a VCS has not yet be able to associate a part of a
+  > changelog file with a particular commit, so you have to duplicate the log
+  > history in a VCS log.
 
 * The changelog file from one branch (parent branch) can contain the changelog
   for another branch (child branch).
@@ -471,6 +486,15 @@ Disadvantages (Cons) of using a separate changelog file:
   anywhere, there exists a desynchronization issue with changes in a VCS log if
   they are duplicated there (records are simply inconvenient or expensive to
   change again in a VCS log).
+
+* Commits remove after rewrite or merge does not let the associated history
+  from remove in the changelog file. You have to manually find and remove the
+  log history.
+
+  > :information_source: Note:<br/>
+  > This exists because a VCS has not yet be able to associate a part of a
+  > changelog file with a particular commit, so you have to duplicate the log
+  > history in a VCS log.
 
 * It is possible to accidentally commit a changelog file with a changeset block
   destined for the next or another commit.
