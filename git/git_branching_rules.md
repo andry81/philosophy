@@ -133,7 +133,7 @@ enable/disable such a check.
 
    **Note**:
 
-   > Such metadata can help in an appropriate branch colorization in the GUI software, because branch names in a commit metadata will exist even if a Git branch name contained the commit is removed or renamed a long ago.
+   > Such metadata can help in an appropriate branch colorization in the GUI software, because branch names in a commit metadata will exist even if a Git branch name contained the commit is removed or renamed a long time ago.
 
 5. The hooks over a changelog file in the source tree (see details described in the `changelog_file_vs_scm_commit_log.md`).
 
