@@ -1,9 +1,9 @@
 * git_branching_rules.md
-* 2025.02.02
+* 2025.03.10
 
-1. DESCRIPTION
-2. RULES
-3. FILES
+1. DESCRIPTION  
+2. RULES  
+3. FILES  
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -23,7 +23,7 @@ enable/disable such a check.
 
    **Example**:
 
-      > existed branches:     `master`, `dev`, `feature/*`, `release`<br />
+      > existed branches:     `master`, `dev`, `feature/*`, `release`  
       > restricted branches:  `master`, `release`
 
       A user can push to these branches:
@@ -63,7 +63,7 @@ enable/disable such a check.
          For more complex case the `release/<version>` can be used instead.
          In all other cases the `master` holds all completed and tested or reviewed commits.
 
-   > [!NOTE]
+   > [!NOTE]  
    > For simple cases with only one developer all the branches can be reduced into only 2: `master` and `dev`, where the `master` can hold not stable or not tested commits and `dev` can hold incomplete commits. The stable or release state of a branch can be marked by tags.
 
    To create a branch on the remote can only a privileged user like a team lead user.
@@ -125,11 +125,11 @@ enable/disable such a check.
 
    To push a commit with a different branch name in the metadata, you must include that branch in a push. Otherwise it looks like you try to push an incomplete set of commits.
 
-   > [!NOTE]
+   > [!NOTE]  
    > Such functionality is affected by `git commit` command and may be omitted or not used by a user. So this must be somehow integrated into local user environment to automatically create such metadata in each user commit.
    > This will hold additional history of branches been committed and deleted. So is required the mechanism to print/show such branches in a user local environment additionally to the generic Git branches.
 
-   > [!NOTE]
+   > [!NOTE]  
    > Such metadata can help in an appropriate branch colorization in the GUI software, because branch names in a commit metadata will exist even if a Git branch name contained the commit is removed or renamed a long time ago.
 
 5. The hooks over a changelog file in the source tree (see details described in the `changelog_file_vs_scm_commit_log.md`).
@@ -179,10 +179,10 @@ enable/disable such a check.
 
    The rule exists to control the changes reflection within a changelog file from a parent not merge commit in case of a merge commit and within a changelog file from a not merge commit.
 
-   > [!NOTE]
+   > [!NOTE]  
    > Such functionality is affected by `git commit` command and may be omitted or not used by a user. So this must be somehow integrated into local user environment to help user to automatically generate an appropriate author list in changes of each changelog file before made a commit.
 
-   > [!NOTE]
+   > [!NOTE]  
    > A merge commit may contain changes not been recorded or reflected in a parent commit (a change description without an author). Or a change description may change after the merge (a change with the same author but with altered description). This rule does not track or reject such implications.
 
 

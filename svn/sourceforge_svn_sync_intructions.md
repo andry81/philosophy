@@ -1,19 +1,18 @@
 * sourceforge_svn_sync_intructions.md
-* 2024.09.18
+* 2025.03.10
 
-1. DESCRIPTION
-2. OFFICIAL DOCUMENTATION
-3. SERVER CREDENTIALS
-4. LOGIN CONSOLE COMMANDS
-5. SERVER CONSOLE COMMANDS
-<br />5.1. svnadmin
-<br />5.2. tar
-<br />5.3. git
-6. SERVER URL COMMANDS
-7. CLIENT CONSOLE COMMANDS
-<br />7.1. rsync
-<br />7.2. svnrdump
-
+1. DESCRIPTION  
+2. OFFICIAL DOCUMENTATION  
+3. SERVER CREDENTIALS  
+4. LOGIN CONSOLE COMMANDS  
+5. SERVER CONSOLE COMMANDS  
+5.1. svnadmin  
+5.2. tar  
+5.3. git  
+6. SERVER URL COMMANDS  
+7. CLIENT CONSOLE COMMANDS  
+7.1. rsync  
+7.2. svnrdump  
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -24,12 +23,12 @@ The `sourceforge.net` SVN synchronization instructions.
 2. OFFICIAL DOCUMENTATION
 -------------------------------------------------------------------------------
 
-https://sourceforge.net/p/forge/documentation/Docs%20Home/
+https://sourceforge.net/p/forge/documentation/Docs%20Home/  
 
-https://sourceforge.net/p/forge/documentation/rsync/<br />
-https://sourceforge.net/p/forge/documentation/svn/<br />
-https://sourceforge.net/p/forge/documentation/SVN%20Import/<br />
-https://sourceforge.net/p/forge/documentation/SSH/<br />
+https://sourceforge.net/p/forge/documentation/rsync/  
+https://sourceforge.net/p/forge/documentation/svn/  
+https://sourceforge.net/p/forge/documentation/SVN%20Import/  
+https://sourceforge.net/p/forge/documentation/SSH/  
 
 -------------------------------------------------------------------------------
 3. SERVER CREDENTIALS
@@ -48,7 +47,7 @@ https://sourceforge.net/p/forge/documentation/SSH/<br />
 
 * passowrd + verification code
 
-> :information_source: Note:<br/>
+> [!NOTE]
 > For the verification code use the android application: `2FAS Auth`.
 
 ### Known paths
@@ -69,7 +68,9 @@ https://sourceforge.net/p/forge/documentation/SSH/<br />
 
 ### SSH
 
-> ssh -t {USER}@shell.sourceforge.net create
+```cmd
+ssh -t {USER}@shell.sourceforge.net create
+```
 
 -------------------------------------------------------------------------------
 5. SERVER CONSOLE COMMANDS
@@ -81,16 +82,22 @@ https://sourceforge.net/p/forge/documentation/SSH/<br />
 
 ### SVN bare database dump into file
 
-> svnadmin dump /home/svn/p/{PROJECT}/{REPO} > /home/users/{USER}/{REPO}-old.dump
+```cmd
+svnadmin dump /home/svn/p/{PROJECT}/{REPO} > /home/users/{USER}/{REPO}-old.dump
+```
 
 ### SVN bare database recreation
 
-> rm -rf /home/svn/p/{PROJECT}/{REPO}<br />
-> svnadmin create --compatible-version 1.9 /home/svn/p/{PROJECT}/{REPO}
+```cmd
+rm -rf /home/svn/p/{PROJECT}/{REPO}  
+svnadmin create --compatible-version 1.9 /home/svn/p/{PROJECT}/{REPO}
+```
 
 ### SVN bare database load from dump file
 
-> svnadmin load /home/svn/p/{PROJECT}/{REPO} < /home/users/{USER}/{REPO}-new.dump
+```cmd
+svnadmin load /home/svn/p/{PROJECT}/{REPO} < /home/users/{USER}/{REPO}-new.dump
+```
 
 -------------------------------------------------------------------------------
 5.2. tar
@@ -98,15 +105,21 @@ https://sourceforge.net/p/forge/documentation/SSH/<br />
 
 ### SVN dump file compress into archive
 
-> tar --xz -cf {REPO}-old.dump.tar.xz {REPO}-old.dump
+```cmd
+tar --xz -cf {REPO}-old.dump.tar.xz {REPO}-old.dump
+```
 
 ### SVN bare database extract
 
-> tar -xf {REPO}-new.dump.tar.xz -C /home/svn/p/{PROJECT}
+```cmd
+tar -xf {REPO}-new.dump.tar.xz -C /home/svn/p/{PROJECT}
+```
 
 ### SVN dump file extract
 
-> tar -xf {REPO}-new.dump.tar.xz {REPO}-new.dump
+```cmd
+tar -xf {REPO}-new.dump.tar.xz {REPO}-new.dump
+```
 
 -------------------------------------------------------------------------------
 5.3. git
@@ -114,7 +127,9 @@ https://sourceforge.net/p/forge/documentation/SSH/<br />
 
 ### Enable not fast-forward force push
 
-> git config receive.denynonfastforwards false
+```cmd
+git config receive.denynonfastforwards false
+```
 
 OR
 
@@ -141,11 +156,15 @@ Use scripts:
 
 ### Download and sync
 
-> rsync -rvz --delete-excluded --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r svn.code.sf.net::p/PROJECTNAME/REPOSITORY .
+```cmd
+rsync -rvz --delete-excluded --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r svn.code.sf.net::p/PROJECTNAME/REPOSITORY .
+```
 
 ### Upload and sync
 
-> rsync -rvz --delete-excluded . svn.code.sf.net::p/PROJECTNAME/REPOSITORY
+```cmd
+rsync -rvz --delete-excluded . svn.code.sf.net::p/PROJECTNAME/REPOSITORY
+```
 
 -------------------------------------------------------------------------------
 7.2. svnrdump
@@ -153,4 +172,6 @@ Use scripts:
 
 ### SVN remote repository dump into file
 
-> svnrdump dump https://svn.code.sf.net/p/{PROJECT}/{REPO} > {REPO}-old.dump
+```cmd
+svnrdump dump https://svn.code.sf.net/p/{PROJECT}/{REPO} > {REPO}-old.dump
+```

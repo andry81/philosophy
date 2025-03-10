@@ -1,9 +1,9 @@
 * github_credentials.md
-* 2025.03.05
+* 2025.03.10
 
-1. DESCRIPTION
-2. CREDENTIALS
-<br />2.1. Windows Credential Manager
+1. DESCRIPTION  
+2. CREDENTIALS  
+2.1. Windows Credential Manager  
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -23,7 +23,7 @@ and `https:` protocols authentication based on a single record in the
 
 Now is required 2 records instead of 1 as was before.
 
-https://github.com/orgs/community/discussions/133133#discussioncomment-10443908
+https://github.com/orgs/community/discussions/133133#discussioncomment-10443908  
 
 Otherwise the error is persist:
 
@@ -62,15 +62,15 @@ Persistence: Local computer
 > `cmdkey.exe` utility.
 
 > [!NOTE]
-> The details how to add through the PowerShell:
+> The details how to add through the PowerShell:  
 > https://serverfault.com/questions/920048/change-persistence-type-of-windows-credentials-from-enterprise-to-local-compu
 
 > [!NOTE]
-> Scripts to add the second record:
+> Scripts to add the second record:  
 > https://github.com/andry81/contools--admin/tree/HEAD/scripts/Wincred
 
-Another fix would be to install the `Git Credential Manager`:
-https://github.com/git-ecosystem/git-credential-manager
+Another fix would be to install the `Git Credential Manager`:  
+https://github.com/git-ecosystem/git-credential-manager  
 
 The installation does update `Windows Credential Manager` records once and
 changes the Git credential helper variable:

@@ -1,14 +1,14 @@
 * changelog_file_vs_scm_commit_log.md
-* 2025.01.03
+* 2025.03.10
 
-1. DESCRIPTION
-2. REPOSITORY DIRECTORIES EXAMPLE
-3. FORMAT DESCRIPTION
-4. EXPLANATION
-5. DEVELOPMENT TOOLS
-6. RELATED RESOURCES
-7. KNOWN ISSUES
-<br />7.1. Winmerge Substitution Filter does not work as expected
+1. DESCRIPTION  
+2. REPOSITORY DIRECTORIES EXAMPLE  
+3. FORMAT DESCRIPTION  
+4. EXPLANATION  
+5. DEVELOPMENT TOOLS  
+6. RELATED RESOURCES  
+7. KNOWN ISSUES  
+7.1. Winmerge Substitution Filter does not work as expected  
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -108,7 +108,7 @@ Changelog files organization.
     A change related to a file system file/directory move/rename or sources
     change without functionality change.
 
-  > :information_source: Note:<br/>
+  > [!NOTE]  
   > All types here is a matter of a personal choice. Here is described only a generic set of changelog message types for a manual typing.
   > For example, you can use other changelog message types like: `notice`, `warning`, `error`, `hint`, `doc` and etc.
   > Each changelog message type has sence in a particular sources context.
@@ -146,7 +146,7 @@ Changelog files organization.
   * dirC/fileB
   * dirC/fileC-*.txt
 
-  > :information_source: Note:<br/>
+  > [!NOTE]  
   > If the `<location>` expression has a globbing character (`*`, `?`) and does not have a slash character, then the scope has a multi level recursion. So the `**/<file>` and `<file>` paths are equal.
   > To specifically limit the scope of a path, you have to particularly use a path with a slash character.
 
@@ -163,7 +163,7 @@ Changelog files organization.
   * `<dir>/**/<file>`             - partial path to a file with multi level recursion.
   * `<dir>/**/<dir>`              - partial path to a directory with multi level recursion.
 
-  > :information_source: Note:<br/>
+  > [!NOTE]  
   > There is no clear distinction between a file or a directory in the end of a path, because `<location>` depends on what the commit has.
   > So in case of an ambiguous path, which is not much frequent case, you must use the `<location>` with the leading slash.
 
@@ -207,13 +207,13 @@ Changelog files organization.
             https://github.com/USER/REPO/issues/NUMBER: `<issue-url-message>`
   ```
 
-  > :information_source: Note:<br/>
+  > [!NOTE]  
   > The `#xxx` is a common method to inject the commit message and commit hash
-  > into the GitHub Issue conversation:<br/>
+  > into the GitHub Issue conversation:  
   > https://stackoverflow.com/questions/1687262/link-to-the-issue-number-on-github-within-a-commit-message
 
-  > :warning: Warning:<br/>
-  > If you try to rewrite the repository with commits containing `#xxx` reference or complete issue url `https://github.com/USER/REPO/issues/NUMBER`, then the GitHub adds the backtrack link into the issue conversation again:<br/>
+  > [!WARNING]  
+  > If you try to rewrite the repository with commits containing `#xxx` reference or complete issue url `https://github.com/USER/REPO/issues/NUMBER`, then the GitHub adds the backtrack link into the issue conversation again:  
   > `A repository rewrite involves reappend all backtrack links to rewrited commits with issue links` : https://github.com/orgs/community/discussions/49227
 
   Rules for blocks with dates:
@@ -250,7 +250,7 @@ Changelog files organization.
       like [vcstool](https://github.com/dirk-thomas/vcstool) externals in the
       `.externals` file.
 
-    > :information_source: Note:<br/>
+    > [!NOTE]  
     > The difference between a custom git externals and builtin
     > externals is that the custom externals are not part of a VCS and so
     > must be included in the changeset of a changelog file.
@@ -380,7 +380,7 @@ sources in a separate directory and all subdirectories (an inclusive log):
   source control system, which makes it easier to find changes only in the
   source control system.
 
-  > :information_source: Note:<br/>
+  > [!NOTE]  
   > The changes in the source code in such case can be ignored in a VCS log.
   > But because a VCS has not yet be able to associate a part of a changelog
   > file with a particular commit, you have to duplicate them in a VCS log.
@@ -405,7 +405,7 @@ sources in a separate directory and all subdirectories (an inclusive log):
   But on another hand it prevents an easy edit of the log history to intently
   cut the history together with a commit.
 
-  > :information_source: Note:<br/>
+  > [!NOTE]  
   > This exists because a VCS has not yet be able to associate a part of a
   > changelog file with a particular commit, so you have to duplicate the log
   > history in a VCS log.
@@ -491,7 +491,7 @@ Disadvantages (Cons) of using a separate changelog file:
   from remove in the changelog file. You have to manually find and remove the
   log history.
 
-  > :information_source: Note:<br/>
+  > [!NOTE]  
   > This exists because a VCS has not yet be able to associate a part of a
   > changelog file with a particular commit, so you have to duplicate the log
   > history in a VCS log.
@@ -566,15 +566,15 @@ https://github.com/slashsbin/styleguide-git-commit-message
 
 ### Gitmoji
 
-https://gitmoji.dev/<br />
-https://github.com/carloscuesta/gitmoji
+https://gitmoji.dev/  
+https://github.com/carloscuesta/gitmoji  
 
 -------------------------------------------------------------------------------
 7. KNOWN ISSUES
 -------------------------------------------------------------------------------
-&nbsp;
+
 -------------------------------------------------------------------------------
 7.1. Winmerge Substitution Filter does not work as expected
 -------------------------------------------------------------------------------
 https://github.com/WinMerge/winmerge/issues/2221 :
-`Poor compare experience with Substitution Filters`
+`Poor compare experience with Substitution Filters`  
