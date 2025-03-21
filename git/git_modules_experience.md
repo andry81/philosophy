@@ -15,15 +15,24 @@ Git modules experience.
 -------------------------------------------------------------------------------
 2. INVESTIGATION
 -------------------------------------------------------------------------------
-https://lore.kernel.org/git/1716310675.20230122233403@inbox.ru/  
+kernel.org:
 
-  `svn externals replacement` : https://github.com/chronoxor/gil/issues/6  
-  `svn complete replacement for externals` : https://github.com/dirk-thomas/vcstool/issues/243  
-  `nested submodules detection w/o .gitmodules file` : https://github.com/gitextensions/gitextensions/discussions/10644 (https://github.com/gitextensions/gitextensions/issues/10642)  
-  `[Discussion] nested submodules detection w/o .gitmodules file` : https://github.com/ingydotnet/git-subrepo/issues/575  
+  * https://lore.kernel.org/git/1716310675.20230122233403@inbox.ru/  
 
-  `Zip archive to include submodule` : https://github.com/dear-github/dear-github/issues/214  
-  `[PATCH] archive: add –recurse-submodules to git-archive command` : https://git.github.io/rev_news/2022/11/30/edition-93/, https://lore.kernel.org/git/pull.1359.git.git.1665597148042.gitgitgadget@gmail.com/  
+Github:
+
+  * `svn externals replacement` : https://github.com/chronoxor/gil/issues/6  
+  * `svn complete replacement for externals` : https://github.com/dirk-thomas/vcstool/issues/243  
+  * `nested submodules detection w/o .gitmodules file` : https://github.com/gitextensions/gitextensions/discussions/10644 (https://github.com/gitextensions/gitextensions/issues/10642)  
+  * `[Discussion] nested submodules detection w/o .gitmodules file` : https://github.com/ingydotnet/git-subrepo/issues/575  
+
+  * `Zip archive to include submodule` : https://github.com/dear-github/dear-github/issues/214  
+  * `[PATCH] archive: add –recurse-submodules to git-archive command` : https://git.github.io/rev_news/2022/11/30/edition-93/, https://lore.kernel.org/git/pull.1359.git.git.1665597148042.gitgitgadget@gmail.com/  
+
+Stackoverflow:
+
+  * `svn to git migration with nested svn:externals` : https://stackoverflow.com/questions/42793618/svn-to-git-migration-with-nested-svnexternals/56649569#56649569  
+  * SubGit details for a one time SVN to Git migration: https://stackoverflow.com/questions/79524070/git-svn-places-git-folder-in-the-same-directory-as-the-project-parent-folder-in/79525532#79525532  
 
 -------------------------------------------------------------------------------
 3. CONSLUSION
