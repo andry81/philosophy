@@ -1,9 +1,11 @@
 * git_modules_experience.md
-* 2025.03.10
+* 2025.03.21
 
 1. DESCRIPTION  
 2. INVESTIGATION  
 3. CONSLUSION  
+4. USAGE  
+5. RELATED ISSUES  
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -56,3 +58,15 @@ This approach can use both the `vcstool` as a more convenient tool by default
 and the `.gitmodules` file, where it is might be required because of
 circumstances. For example, for a ZIP archive (`Download ZIP` button) as were
 noted [here](https://github.com/dear-github/dear-github/issues/214).
+
+-------------------------------------------------------------------------------
+4. USAGE
+-------------------------------------------------------------------------------
+https://github.com/andry81/externals
+
+-------------------------------------------------------------------------------
+5. RELATED ISSUES
+-------------------------------------------------------------------------------
+* `Changelog files organization` : https://gist.github.com/andry81/d278e6d129ca1af326eafb67470a2ae3
+* `Git branches organization` : https://gist.github.com/andry81/44bb1375ad327fa4717119784c0526a6
+* `GitHub credentials notable details and changes` : https://gist.github.com/andry81/4dc954fc98a84807195080c6d2c5bc72
