@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2025.03.10
+* 2025.05.14
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -450,6 +450,14 @@ sources in a separate directory and all subdirectories (an inclusive log):
   script on the client side. And a push can be rejected by a server side hook
   if a commit does have has at least one changelog line without the authors
   list or without the author have being pushed the commit.
+
+* As long as a changelog file contains all the directory changelog records
+  including those that has been before the repository history, a branch or the
+  directory existence, then you can use the file to search a first known good
+  record to find an issue, a feature or a change outside of a VCS commit
+  history log.
+  In case of the Git repository history search, then you can use the changelog
+  file to find an initial commit by date for the `git bisect` command.
 
 Disadvantages (Cons) of using a separate changelog file:
 
