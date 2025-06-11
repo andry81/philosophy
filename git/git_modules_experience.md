@@ -19,21 +19,57 @@ kernel.org:
 
   * https://lore.kernel.org/git/1716310675.20230122233403@inbox.ru/  
 
+kde.org:
+
+  * `Projects/MoveToGit/UsingSvn2Git` :  
+    https://techbase.kde.org/Projects/MoveToGit/UsingSvn2Git  
+
 Github:
 
-  * `svn externals replacement` : https://github.com/chronoxor/gil/issues/6  
-  * `svn complete replacement for externals` : https://github.com/dirk-thomas/vcstool/issues/243  
-  * `nested submodules detection w/o .gitmodules file` : https://github.com/gitextensions/gitextensions/discussions/10644 (https://github.com/gitextensions/gitextensions/issues/10642)  
-  * `[Discussion] nested submodules detection w/o .gitmodules file` : https://github.com/ingydotnet/git-subrepo/issues/575  
+  * `svn externals replacement` :  
+     https://github.com/chronoxor/gil/issues/6  
+  * `svn complete replacement for externals` :  
+     https://github.com/dirk-thomas/vcstool/issues/243  
+  * `nested submodules detection w/o .gitmodules file` :  
+     https://github.com/gitextensions/gitextensions/discussions/10644  
+     (https://github.com/gitextensions/gitextensions/issues/10642)  
+  * `[Discussion] nested submodules detection w/o .gitmodules file` :  
+     https://github.com/ingydotnet/git-subrepo/issues/575  
+  * `convert-svnexternals script does not handle svn:externals with date-time revisions` :  
+     https://github.com/newren/git-filter-repo/issues/459  
+     (https://support.tmatesoft.com/t/subgit-import-does-not-handle-date-time-revisions-in-svn-externals-properties/2987)  
 
-  * `Zip archive to include submodule` : https://github.com/dear-github/dear-github/issues/214  
-  * `[PATCH] archive: add –recurse-submodules to git-archive command` : https://git.github.io/rev_news/2022/11/30/edition-93/, https://lore.kernel.org/git/pull.1359.git.git.1665597148042.gitgitgadget@gmail.com/  
+  * `Phase out git svn support in Git for Windows` :  
+    https://github.com/git-for-windows/git/issues/5405  
+
+  * `Zip archive to include submodule` :  
+     https://github.com/dear-github/dear-github/issues/214  
+  * `[PATCH] archive: add –recurse-submodules to git-archive command` :  
+     https://git.github.io/rev_news/2022/11/30/edition-93/, https://lore.kernel.org/git/pull.1359.git.git.1665597148042.gitgitgadget@gmail.com/  
 
 Stackoverflow:
 
-  * `How to use svn2git on repository` : https://stackoverflow.com/questions/43843107/how-to-use-svn2git-on-repository/77767104#77767104
-  * `svn to git migration with nested svn:externals` : https://stackoverflow.com/questions/42793618/svn-to-git-migration-with-nested-svnexternals/56649569#56649569  
-  * SubGit details for a one time SVN to Git migration: https://stackoverflow.com/questions/79524070/git-svn-places-git-folder-in-the-same-directory-as-the-project-parent-folder-in/79525532#79525532  
+  * `How to use svn2git on repository` :  
+    https://stackoverflow.com/questions/43843107/how-to-use-svn2git-on-repository/77767104#77767104  
+  * `svn to git migration with nested svn:externals` :  
+    https://stackoverflow.com/questions/42793618/svn-to-git-migration-with-nested-svnexternals/56649569#56649569  
+  * SubGit details for a one time SVN to Git migration:  
+    https://stackoverflow.com/questions/79524070/git-svn-places-git-folder-in-the-same-directory-as-the-project-parent-folder-in/79525532#79525532  
+
+SVN-to-Git translation related tools:
+
+  * SubGit:  
+    https://subgit.com/documentation/howto.html  
+  * svn2git:  
+    https://github.com/svn-all-fast-export/svn2git  
+  * svneverever:  
+    https://github.com/hartwork/svneverever  
+
+Git related tools:
+  * vcstool:  
+    https://github.com/dirk-thomas/vcstool  
+  * git-subrepo:  
+    https://github.com/ingydotnet/git-subrepo  
 
 -------------------------------------------------------------------------------
 3. CONSLUSION
