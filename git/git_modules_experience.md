@@ -1,5 +1,5 @@
 * git_modules_experience.md
-* 2025.03.21
+* 2025.06.11
 
 1. DESCRIPTION  
 2. INVESTIGATION  
@@ -31,6 +31,7 @@ Github:
 
 Stackoverflow:
 
+  * `How to use svn2git on repository` : https://stackoverflow.com/questions/43843107/how-to-use-svn2git-on-repository/77767104#77767104
   * `svn to git migration with nested svn:externals` : https://stackoverflow.com/questions/42793618/svn-to-git-migration-with-nested-svnexternals/56649569#56649569  
   * SubGit details for a one time SVN to Git migration: https://stackoverflow.com/questions/79524070/git-svn-places-git-folder-in-the-same-directory-as-the-project-parent-folder-in/79525532#79525532  
 
@@ -40,12 +41,35 @@ Stackoverflow:
 Seems [vcstool](https://github.com/dirk-thomas/vcstool) and the forks is the
 best choice here to avoid `.gitmodules` file in first place.
 
-Discussion:  
-`Status of vcstool` : https://github.com/dirk-thomas/vcstool/issues/242  
+> [!NOTE]
+>
+> Original repository: https://github.com/dirk-thomas/vcstool
+>
+> Discussion: `Status of vcstool` : https://github.com/dirk-thomas/vcstool/issues/242
 
-Forks:  
-https://github.com/aaronplusone/vcstool/tree/feature-sparse-checkouts  
-https://github.com/MaxandreOgeret/vcstool2 (https://pypi.org/project/vcstool2/)  
+> [!NOTE]
+>
+> There is another forks with or without continue of original repository
+> development:
+>
+> * https://github.com/aaronplusone/vcstool/tree/feature-sparse-checkouts
+> * https://github.com/MaxandreOgeret/vcstool2 (https://pypi.org/project/vcstool2/)
+> * https://github.com/ros-infrastructure/vcstool
+
+> [!NOTE]
+>
+>  Mine list of `vcstool` related forks:
+>
+>  * https://github.com/orgs/andry81-forks/repositories?type=source&q=vcstool
+>
+> Maximum list of the original repository forks:
+> 
+> * https://github.com/dirk-thomas/vcstool/forks?include=active%2Carchived%2Cinactive%2Cnetwork&page=1&sort_by=stargazer_counts
+>   (sorted by stars)
+> * https://useful-forks.github.io/?repo=dirk-thomas/vcstool
+>   (sorted by stars)
+> * https://devnoname120.github.io/useful-forks/?repo=dirk-thomas/vcstool
+>   (sorted by stars and ahead commits)
 
 On another hand the `.gitmodules` file might be required in some circumstances
 and it's presence (and vcstool file too as well if hashes are used) in the
