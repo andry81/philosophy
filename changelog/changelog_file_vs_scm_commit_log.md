@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2025.05.14
+* 2025.08.23
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -228,7 +228,7 @@ Changelog files organization.
 
   * More than one block can has the same date.
 
-  * Each commit must be associated with a block.
+  * Each commit must be associated with at least one block.
 
   * `<location>` must use relative paths and can use wildcards.
 
@@ -237,7 +237,7 @@ Changelog files organization.
   * Lines must include changes only from the respective directory source and
     must exclude changes outside of the directory source:
 
-    * Exclude external depedencies as a part of VCS like `svn:externals` in the
+    * Exclude external dependencies as a part of VCS like `svn:externals` in the
       SVN and `.gitmodules` file changes in the Git.
 
     * Exclude other VCS properties stored in the file system or behind it like
@@ -531,12 +531,12 @@ and `seclog.md`.
 
   See for details:
 
-  https://github.com/andry81/tacklebar/tree/HEAD/deploy/notepad%2B%2B/plugins/MultiReplace
+  https://github.com/andry81/contools--notepadplusplus/tree/HEAD/deploy/plugins/MultiReplace
 
   You can use these MultiReplace lists to strip (undecorate) the `userlog.md`,
   merge it from the `changelog.txt` and then, redecorate it back:
 
-  https://github.com/andry81/tacklebar/tree/HEAD/deploy/notepad%2B%2B/plugins/MultiReplace/Lists/winmerge
+  https://github.com/andry81/contools--notepadplusplus/tree/HEAD/deploy/plugins/MultiReplace/lists/winmerge
 
 2. Winmerge
 
