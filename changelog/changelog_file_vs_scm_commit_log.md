@@ -1,14 +1,15 @@
 * changelog_file_vs_scm_commit_log.md
-* 2025.08.23
+* 2025.09.02
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
 3. FORMAT DESCRIPTION  
-4. EXPLANATION  
-5. DEVELOPMENT TOOLS  
-6. RELATED RESOURCES  
-7. KNOWN ISSUES  
-7.1. Winmerge Substitution Filter does not work as expected  
+4. GENERIC CASE OR SHORTCUT MESSAGES  
+5. EXPLANATION  
+6. DEVELOPMENT TOOLS  
+7. RELATED RESOURCES  
+8. KNOWN ISSUES  
+8.1. Winmerge Substitution Filter does not work as expected  
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -102,11 +103,9 @@ Changelog files organization.
   * `new`:
     A change of sources with first time new implementation.
   * `changed`:
-    A change without fix or new implementation. Can include functionality add
-    or remove.
+    A change without fix or new implementation. Can include functionality add or remove.
   * `refactor`:
-    A change related to a file system file/directory move/rename or sources
-    change without functionality change.
+    A change related to a file system file/directory move/rename or sources change without functionality change.
 
   > [!NOTE]  
   > All types here is a matter of a personal choice. Here is described only a generic set of changelog message types for a manual typing.
@@ -147,7 +146,7 @@ Changelog files organization.
   * dirC/fileC-*.txt
 
   > [!NOTE]  
-  > If the `<location>` expression has a globbing character (`*`, `?`) and does not have a slash character, then the scope has a multi level recursion. So the `**/<file>` and `<file>` paths are equal.
+  > If the `<location>` expression has a globbing character (`*`, `?`) and does not have a slash character, then the scope has a multi level recursion. So the `**/<file>` and `<file>` paths are equal, and the `*<file>` and `<file>` paths has the same level of recursion.
   > To specifically limit the scope of a path, you have to particularly use a path with a slash character.
 
   Examples:
@@ -160,12 +159,13 @@ Changelog files organization.
   * `<dir>/<dir>`                 - somethere in a directory of a directory in a source tree.
   * `*/<file>`, `<dir>/*/<file>`  - partial path to a file with a single level recursion.
   * `*/<dir>`, `<dir>/*/<dir>`    - partial path to a directory with a single level recursion.
-  * `<dir>/**/<file>`             - partial path to a file with multi level recursion.
-  * `<dir>/**/<dir>`              - partial path to a directory with multi level recursion.
+  * `<dir>/**/<file>`             - partial path to a file with multi level recursion beginning a directory.
+  * `<dir>/**/<dir>`              - partial path to a directory with multi level recursion beginning a directory.
 
   > [!NOTE]  
-  > There is no clear distinction between a file or a directory in the end of a path, because `<location>` depends on what the commit has.
-  > So in case of an ambiguous path, which is not much frequent case, you must use the `<location>` with the leading slash.
+  > There is no clear distinction between a file and a directory in the end of a path, because `<location>` depends on what the commit has.
+  > So in case of an ambiguous path, which is not much frequent case, you can use the `<location>` with the leading slash or a slash in the middle.
+  > For a precise location you must use the leading slash with the exact relative source tree path without the globbing characters.
 
   `<self-hosted-issues>`:
 
@@ -330,7 +330,139 @@ Changelog files organization.
   include only security lines.
 
 -------------------------------------------------------------------------------
-4. EXPLANATION
+4. GENERIC CASE OR SHORTCUT MESSAGES
+-------------------------------------------------------------------------------
+Because there exists `<type>` and `<location>` prefix, then you can leave a
+short message related to a particular file or directory changes instead
+of a detailed one. Such a message is issued as a shortcut to a detailed
+message.
+
+Here is collected a basic set of frequently used messages as examples:
+
+<table>
+  <tr>
+    <th>
+      Type
+    </th>
+    <th>
+      Messages
+    </th>
+    <th>
+      Meaning
+    </th>
+  </tr>
+  <tr>
+    <td>
+      fixed
+    </td>
+    <td>
+      execution&nbsp;[fixup]
+    </td>
+    <td>
+      Basic minimal set of fixes to pass tests or fix the expected functionality or output after an execution.
+      The result basically is tested for a correct value at least manually.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      fixed
+    </td>
+    <td>
+      <ul>
+        <li>minor&nbsp;fixup</li>
+        <li>code&nbsp;fixup</li>
+      </ul>
+    </td>
+    <td>
+      Basic minimal set of fixes to fix a code expected functionality or an output.
+      The result is NOT tested for a correct value, which means a code functionality may be altered or broken.
+      Difference between the `minor` and `code` is that the `code` may has a not minor code fix.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      refactor
+    </td>
+    <td>
+      description&nbsp;[fixup]
+    </td>
+    <td>
+      Description or comments fixup. In case of a code does NOT alter a functionality.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      changed
+    </td>
+    <td>
+      <ul>
+        <li>minor&nbsp;cleanup</li>
+        <li>[code]&nbsp;cleanup</li>
+      </ul>
+    </td>
+    <td>
+      Remove of redundant or unused sources or a code. In case of a code does alter a functionality.
+      Difference between the `minor` and `code` is that the `code` may has a not minor code change(s).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      changed
+    </td>
+    <td>
+      <ul>
+        <li>minor&nbsp;improvement(s)</li>
+        <li>code&nbsp;improvement(s)</li>
+      </ul>
+    </td>
+    <td>
+      Set of improvements to change a code functionality or an output.
+      Difference between the `minor` and `code` is that the `code` may has a not minor code change(s).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      fixed, changed
+      </ul>
+    </td>
+    <td>
+      missed&nbsp;change(s)
+    </td>
+    <td>
+      Set of missed changes just late or expensive to amend.
+      Difference between the `fixed` and `changed` is that the `fixed` is for a fixing change.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      changed
+    </td>
+    <td>
+      <ul>
+        <li>minor&nbsp;improvement(s)</li>
+        <li>code&nbsp;improvement(s)</li>
+      </ul>
+    </td>
+    <td>
+      Set of improvements to change a code functionality or an output.
+      Difference between the `minor` and `code` is that the `code` may has a not minor code change(s).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      changed
+    </td>
+    <td>
+      back&nbsp;merge [from <project-name> project]
+    </td>
+    <td>
+      Merge of changes from an external project used as a dependency.
+    </td>
+  </tr>
+</table>
+
+-------------------------------------------------------------------------------
+5. EXPLANATION
 -------------------------------------------------------------------------------
 Use an external file or files to describe the directory source changes in time.
 
@@ -459,6 +591,9 @@ sources in a separate directory and all subdirectories (an inclusive log):
   In case of the Git repository history search, then you can use the changelog
   file to find an initial commit by date for the `git bisect` command.
 
+* A message with the conjunction to `<type>` and `<location>` can form a
+  shortcut message to a detailed one is described somewhere else.
+
 Disadvantages (Cons) of using a separate changelog file:
 
 * The changes to files that are not directly related to the source code may not
@@ -518,7 +653,7 @@ Conclusions.
    general case, where the advantages outweigh the disadvantages.
 
 -------------------------------------------------------------------------------
-5. DEVELOPMENT TOOLS
+6. DEVELOPMENT TOOLS
 -------------------------------------------------------------------------------
 Some development tools to help compare and merge `changelog.txt`, `userlog.md`
 and `seclog.md`.
@@ -553,7 +688,7 @@ and `seclog.md`.
   `seclog.md`.
 
 -------------------------------------------------------------------------------
-6. RELATED RESOURCES
+7. RELATED RESOURCES
 -------------------------------------------------------------------------------
 ### Complete list of github markdown emoji markup
 
@@ -578,11 +713,11 @@ https://gitmoji.dev/
 https://github.com/carloscuesta/gitmoji  
 
 -------------------------------------------------------------------------------
-7. KNOWN ISSUES
+8. KNOWN ISSUES
 -------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------
-7.1. Winmerge Substitution Filter does not work as expected
+8.1. Winmerge Substitution Filter does not work as expected
 -------------------------------------------------------------------------------
 https://github.com/WinMerge/winmerge/issues/2221 :
 `Poor compare experience with Substitution Filters`  
