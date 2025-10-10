@@ -156,12 +156,12 @@ Changelog files organization.
 
   Examples:
 
-  * `<file>`, `**/<file>`         - a file somethere in a source tree, a path with multi level recursion.
+  * `<file>`, `**/<file>`         - a file somewhere in a source tree, a path with multi level recursion.
   * `/<file>`                     - a file in the root directory.
-  * `<dir>`, `**/<dir>`           - somethere in a directory of a source tree.
-  * `/<dir>`                      - somethere in a directory in the root directory.
-  * `<dir>/<file>`                - a file somethere in a directory in a source tree.
-  * `<dir>/<dir>`                 - somethere in a directory of a directory in a source tree.
+  * `<dir>`, `**/<dir>`           - somewhere in a directory of a source tree.
+  * `/<dir>`                      - somewhere in a directory in the root directory.
+  * `<dir>/<file>`                - a file somewhere in a directory in a source tree.
+  * `<dir>/<dir>`                 - somewhere in a directory of a directory in a source tree.
   * `*/<file>`, `<dir>/*/<file>`  - partial path to a file with a single level recursion.
   * `*/<dir>`, `<dir>/*/<dir>`    - partial path to a directory with a single level recursion.
   * `<dir>/**/<file>`             - partial path to a file with multi level recursion beginning a directory.
@@ -389,10 +389,13 @@ Here is collected a basic set of frequently used messages as examples:
       refactor
     </td>
     <td>
-      description&nbsp;[fixup]
+      <ul>
+        <li>description&nbsp;[fixup]</li>
+        <li>minor&nbsp;[refactor]</li>
+      </ul>
     </td>
     <td>
-      Description or comments fixup. In case of a code does NOT alter a functionality.
+      Description or comments fixup or refactor. In case of a code does NOT alter a functionality.
     </td>
   </tr>
   <tr>
