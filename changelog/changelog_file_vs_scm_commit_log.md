@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2025.09.02
+* 2025.10.10
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -145,9 +145,14 @@ Changelog files organization.
   * dirC/fileB
   * dirC/fileC-*.txt
 
-  > [!NOTE]  
-  > If the `<location>` expression has a globbing character (`*`, `?`) and does not have a slash character, then the scope has a multi level recursion. So the `**/<file>` and `<file>` paths are equal, and the `*<file>` and `<file>` paths has the same level of recursion.
-  > To specifically limit the scope of a path, you have to particularly use a path with a slash character.
+  Rules:
+
+  * If the `<location>` expression does have only one section, has no `:` and `/` characters, then a string can be a directory or a file, depending on the context.
+  * If the `<location>` expression has or has no a file or a directory name globbing character (`*`, `?`), except single component `**` or `*`, but does not have a slash `/` character, then the scope has a multi level recursion.
+  * If the `<location>` expression has a directory name globbing character (`*`, `?`), then the level of recursion is dependent on the `*` character only: `**` - multi level, `*` - single level.
+
+  So the `**/<file>` and `<file>` paths are equal, the `*<file>` and `<file>` paths has the same level of recursion, but `*/<file>` and `<file>` paths has a different level of recursion.
+  To specifically limit the scope of a path, you have to particularly use a path with a slash character.
 
   Examples:
 
