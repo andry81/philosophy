@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2025.10.10
+* 2025.12.04
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -230,6 +230,10 @@ Changelog files organization.
     by `2023.06.16`, then it is better to split it into 2 blocks. Or it can be
     left as a single block if changes has not been recorded specifically to
     the day (squashed).
+
+  * A block date can has an incomplete form like `2025-12-XX`, `2025-YY-XX`,
+    `2025-12-??` and etc. The meaning is that the block order or completeness
+    is not yet defined and can be changed or moved later.
 
   * More than one block can has the same date.
 
@@ -601,6 +605,10 @@ sources in a separate directory and all subdirectories (an inclusive log):
 
 * A message with the conjunction to `<type>` and `<location>` can form a
   shortcut message to a detailed one is described somewhere else.
+
+* A block date can has an incomplete form like `2025-12-XX`, `2025-YY-XX` or
+  `2015-12-??`. The meaning is that the block order or completeness is not yet
+  defined and can be changed or moved later.
 
 Disadvantages (Cons) of using a separate changelog file:
 
