@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2025.12.04
+* 2025.12.05
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -239,7 +239,8 @@ Changelog files organization.
 
   * Each commit must be associated with at least one block.
 
-  * `<location>` must use relative paths and can use wildcards.
+  * `<location>` must use file relative paths (the forwarding slash is a
+    relative path to the root of the source tree) and can use wildcards.
 
   * Lines in each block must be sorted by `<type>`.
 
