@@ -1,5 +1,5 @@
 * git_modules_experience.md
-* 2025.06.11
+* 2026.01.16
 
 1. DESCRIPTION  
 2. INVESTIGATION  
@@ -74,8 +74,23 @@ Git related tools:
 -------------------------------------------------------------------------------
 3. CONSLUSION
 -------------------------------------------------------------------------------
-Seems [vcstool](https://github.com/dirk-thomas/vcstool) and the forks is the
-best choice here to avoid `.gitmodules` file in first place.
+Seems [vcstool](https://github.com/dirk-thomas/vcstool) (or probably another
+name related to a fork you are chosen) and forks is the best choice here to
+avoid `.gitmodules` file in first place.
+
+> [!NOTE]
+>
+> There is always be forks that has ahead commits with new functionality or
+> even a standalone development. You have to investigate on your own to find
+> the best variant.
+
+> [!NOTE]
+>
+> Some forks may does not exist as forks, so you won't find them using a fork
+> related tree search. The only way to find is to use a broad Git search using
+> keywords.
+> See for details: `Forks trace or filtering is broken (forks segmentation)` :
+> https://github.com/orgs/community/discussions/173970
 
 > [!NOTE]
 >
@@ -88,9 +103,11 @@ best choice here to avoid `.gitmodules` file in first place.
 > There is another forks with or without continue of original repository
 > development:
 >
+> * https://github.com/ros-infrastructure/vcs2l/
 > * https://github.com/aaronplusone/vcstool/tree/feature-sparse-checkouts
 > * https://github.com/MaxandreOgeret/vcstool2 (https://pypi.org/project/vcstool2/)
 > * https://github.com/ros-infrastructure/vcstool
+>   (https://github.com/ros-infrastructure/vcs2l)
 
 > [!NOTE]
 >
