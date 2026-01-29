@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2025.12.05
+* 2026.01.29
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -99,11 +99,11 @@ Changelog files organization.
   * `security`:
     A change of sources with fix related to a security only.
   * `fixed`:
-    A change of sources with fix of something not related to a security.
+    A change of sources with fix or workaround of something not related to a security.
   * `new`:
     A change of sources with first time new implementation.
   * `changed`:
-    A change without fix or new implementation. Can include functionality add or remove.
+    A change without fix, workaround or new implementation. Can include functionality add or remove.
   * `refactor`:
     A change related to a file system file/directory move/rename or sources change without functionality change.
 
