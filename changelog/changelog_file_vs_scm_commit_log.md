@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2026.01.29
+* 2026.02.06
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -171,6 +171,33 @@ Changelog files organization.
   > There is no clear distinction between a file and a directory in the end of a path, because `<location>` depends on what the commit has.
   > So in case of an ambiguous path, which is not much frequent case, you can use the `<location>` with the leading slash or a slash in the middle.
   > For a precise location you must use the leading slash with the exact relative source tree path without the globbing characters.
+
+  > [!NOTE]  
+  > The additional meaning of a file globbing in the `<location>` is that.
+  > In case of a globbing file path without a directory part it does mean that the selection/search is made mostly in an entire repository and a commit is a result of a selection/search.
+  >
+  > Example:
+  >   ```console
+  >   *.bat
+  >   ```
+  >
+  >   > Select all files with the `bat` extension.
+  >   > But because a directory part is absent, then the selection appliment is mostly made on an entire repository.
+  >
+  > So a commit CAN BE the result of a repository selection and mostly it is
+  >
+  > In case of a direct (not globbing) file path or a globbing file path with a directory part, it mostly does mean the selection is applied TO a commit and not made for an entire repository.
+  >
+  > Example:
+  >   ```console
+  >   scripts/print-*.bat
+  >   ```
+  >
+  >   > Select all files with the `bat` extension and with `print-` name prefix from `scripts` directory.
+  >   > But because a directory part is present the selection appliment is mostly made on a commit, when a commit is the result of another selection from a repository.
+  >
+  > So the `<location>` CAN BE both the selection result from a commit AND selection from a repository, where a commit is the result of another selection, depending on a directory counter part and selection context.
+  > The end meaning is dependent on a commit content and it's message.
 
   `<self-hosted-issues>`:
 
