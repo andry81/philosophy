@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2026.02.06
+* 2026.02.25
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -184,7 +184,7 @@ Changelog files organization.
   >   > Select all files with the `bat` extension.
   >   > But because a directory part is absent, then the selection appliment is mostly made on an entire repository.
   >
-  > So a commit CAN BE the result of a repository selection and mostly it is
+  > So a commit CAN BE the result of a repository selection and mostly it is.
   >
   > In case of a direct (not globbing) file path or a globbing file path with a directory part, it mostly does mean the selection is applied TO a commit and not made for an entire repository.
   >
@@ -283,9 +283,9 @@ Changelog files organization.
 
     * Exclude VCS extensions like `.gitsvnextmodules` file and others.
 
-    * The root changelog may include the changes from a custom git externals
-      like [vcstool](https://github.com/dirk-thomas/vcstool) externals in the
-      `.externals` file.
+    * The root changelog may include the changes from a custom git
+      [externals](https://github.com/andry81/externals) in the `.externals`
+      file.
 
     > [!NOTE]  
     > The difference between a custom git externals and builtin
