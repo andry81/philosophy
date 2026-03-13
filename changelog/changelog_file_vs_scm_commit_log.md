@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2026.02.25
+* 2026.03.13
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -112,6 +112,15 @@ Changelog files organization.
   > For example, you can use other changelog message types like: `notice`, `warning`, `error`, `hint`, `doc` and etc.
   > Each changelog message type has sence in a particular sources context.
 
+  > [!NOTE]
+  > The `changed` and `refactor` \<type\> is dependent to \<location\> and the end
+  > file.
+  > In case of a code source, the difference is in functionality:
+  > `changed` - for code only, `refactor` - for the rest, for example, for
+  > comments.
+  > If the file is not a code source, then the `refactor` may be replaced by
+  > `changed`.
+
   `<location>`:
 
   ```
@@ -182,7 +191,8 @@ Changelog files organization.
   >   ```
   >
   >   > Select all files with the `bat` extension.
-  >   > But because a directory part is absent, then the selection appliment is mostly made on an entire repository.
+  >   > But because a directory part is absent, then the selection appliement is mostly made to an entire repository.
+  >   > Equals to: `**/*.bat`
   >
   > So a commit CAN BE the result of a repository selection and mostly it is.
   >
@@ -193,8 +203,9 @@ Changelog files organization.
   >   scripts/print-*.bat
   >   ```
   >
-  >   > Select all files with the `bat` extension and with `print-` name prefix from `scripts` directory.
+  >   > Select all files with the `bat` extension and with `print-` name beginning the `scripts` directory.
   >   > But because a directory part is present the selection appliment is mostly made on a commit, when a commit is the result of another selection from a repository.
+  >   > Equals to: `scripts/**/print-*.bat`.
   >
   > So the `<location>` CAN BE both the selection result from a commit AND selection from a repository, where a commit is the result of another selection, depending on a directory counter part and selection context.
   > The end meaning is dependent on a commit content and it's message.
