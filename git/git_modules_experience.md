@@ -1,5 +1,5 @@
 * git_modules_experience.md
-* 2026.01.16
+* 2026.03.23
 
 1. DESCRIPTION  
 2. INVESTIGATION  
@@ -68,15 +68,20 @@ SVN-to-Git translation related tools:
 Git related tools:
   * vcstool:  
     https://github.com/dirk-thomas/vcstool  
+  * gitman:  
+    https://github.com/jacebrowning/gitman  
   * git-subrepo:  
     https://github.com/ingydotnet/git-subrepo  
 
 -------------------------------------------------------------------------------
 3. CONSLUSION
 -------------------------------------------------------------------------------
-Seems [vcstool](https://github.com/dirk-thomas/vcstool) (or probably another
-name related to a fork you are chosen) and forks is the best choice here to
-avoid `.gitmodules` file in first place.
+These set of management tools are convenient to maintain the externals:
+
+1. [vcstool](https://github.com/dirk-thomas/vcstool)  
+   > Discussion: `Status of vcstool` : https://github.com/dirk-thomas/vcstool/issues/242
+
+2. [gitman](https://github.com/jacebrowning/gitman)
 
 > [!NOTE]
 >
@@ -94,35 +99,32 @@ avoid `.gitmodules` file in first place.
 
 > [!NOTE]
 >
-> Original repository: https://github.com/dirk-thomas/vcstool
->
-> Discussion: `Status of vcstool` : https://github.com/dirk-thomas/vcstool/issues/242
-
-> [!NOTE]
->
 > There is another forks with or without continue of original repository
 > development:
 >
-> * https://github.com/ros-infrastructure/vcs2l/
-> * https://github.com/aaronplusone/vcstool/tree/feature-sparse-checkouts
-> * https://github.com/MaxandreOgeret/vcstool2 (https://pypi.org/project/vcstool2/)
-> * https://github.com/ros-infrastructure/vcstool
->   (https://github.com/ros-infrastructure/vcs2l)
+> * vcstool:
+>   * https://github.com/ros-infrastructure/vcs2l/
+>   * https://github.com/aaronplusone/vcstool/tree/feature-sparse-checkouts
+>   * https://github.com/MaxandreOgeret/vcstool2 (https://pypi.org/project/vcstool2/)
+>   * https://github.com/ros-infrastructure/vcstool
+>     (https://github.com/ros-infrastructure/vcs2l)
 
 > [!NOTE]
 >
->  Mine list of `vcstool` related forks:
+> Mine list forks:
 >
->  * https://github.com/orgs/andry81-forks/repositories?type=source&q=vcstool
+> * vcstool:
+>   * https://github.com/orgs/andry81-forks/repositories?type=source&q=vcstool
 >
 > Maximum list of the original repository forks:
-> 
-> * https://github.com/dirk-thomas/vcstool/forks?include=active%2Carchived%2Cinactive%2Cnetwork&page=1&sort_by=stargazer_counts
->   (sorted by stars)
-> * https://useful-forks.github.io/?repo=dirk-thomas/vcstool
->   (sorted by stars)
-> * https://devnoname120.github.io/useful-forks/?repo=dirk-thomas/vcstool
->   (sorted by stars and ahead commits)
+>
+> * vcstool:
+>   * https://github.com/dirk-thomas/vcstool/forks?include=active%2Carchived%2Cinactive%2Cnetwork&page=1&sort_by=stargazer_counts
+>     (sorted by stars)
+>   * https://useful-forks.github.io/?repo=dirk-thomas/vcstool
+>     (sorted by stars)
+>   * https://devnoname120.github.io/useful-forks/?repo=dirk-thomas/vcstool
+>     (sorted by stars and ahead commits)
 
 On another hand the `.gitmodules` file might be required in some circumstances
 and it's presence (and vcstool file too as well if hashes are used) in the
