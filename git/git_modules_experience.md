@@ -1,5 +1,5 @@
 * git_modules_experience.md
-* 2026.03.23
+* 2026.05.08
 
 1. DESCRIPTION  
 2. INVESTIGATION  
@@ -104,14 +104,13 @@ These set of management tools are convenient to maintain the externals:
 >
 > * vcstool:
 >   * https://github.com/ros-infrastructure/vcs2l/
+>     (https://github.com/ros-infrastructure/vcstool)
 >   * https://github.com/aaronplusone/vcstool/tree/feature-sparse-checkouts
 >   * https://github.com/MaxandreOgeret/vcstool2 (https://pypi.org/project/vcstool2/)
->   * https://github.com/ros-infrastructure/vcstool
->     (https://github.com/ros-infrastructure/vcs2l)
 
 > [!NOTE]
 >
-> Mine list forks:
+> Mine list of forks:
 >
 > * vcstool:
 >   * https://github.com/orgs/andry81-forks/repositories?type=source&q=vcstool
