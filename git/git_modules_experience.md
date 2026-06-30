@@ -1,5 +1,5 @@
 * git_modules_experience.md
-* 2026.05.08
+* 2026.06.30
 
 1. DESCRIPTION  
 2. INVESTIGATION  
@@ -17,7 +17,8 @@ Git modules experience.
 -------------------------------------------------------------------------------
 kernel.org:
 
-  * https://lore.kernel.org/git/1716310675.20230122233403@inbox.ru/  
+  * `nested submodules detection w/o .gitmodules file` :  
+    https://lore.kernel.org/git/1716310675.20230122233403@inbox.ru/  
 
 kde.org:
 
@@ -124,6 +125,8 @@ These set of management tools are convenient to maintain the externals:
 >     (sorted by stars)
 >   * https://devnoname120.github.io/useful-forks/?repo=dirk-thomas/vcstool
 >     (sorted by stars and ahead commits)
+>   * https://techgaun.github.io/active-forks/index.html#dirk-thomas/vcstool
+>     (sorted by stars)
 
 On another hand the `.gitmodules` file might be required in some circumstances
 and it's presence (and vcstool file too as well if hashes are used) in the
