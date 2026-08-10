@@ -1,5 +1,5 @@
 * git_branching_rules.md
-* 2025.03.10
+* 2026.08.10
 
 1. DESCRIPTION  
 2. RULES  
@@ -66,8 +66,8 @@ enable/disable such a check.
    > [!NOTE]  
    > For simple cases with only one developer all the branches can be reduced into only 2: `master` and `dev`, where the `master` can hold not stable or not tested commits and `dev` can hold incomplete commits. The stable or release state of a branch can be marked by tags.
 
-   To create a branch on the remote can only a privileged user like a team lead user.
-   To do so the server can cantain the list of previliged users be able to create branches. And branch pattern list, where not privileged users can create branches (`feature/*`).
+   Create a branch on the remote can only a privileged user like a team lead user.
+   To do so the server can contain the list of privileged users be able to create branches and branch pattern list, where not privileged users can create branches (`feature/*`).
 
 2. All commits must be from a being pushed user.
    If some commits authored by different user, then they must be rejected to push.
@@ -135,7 +135,8 @@ enable/disable such a check.
 5. The hooks over a changelog file in the source tree (see details described in the `changelog_file_vs_scm_commit_log.md`).
 
 5.1. All commits must contain a changelog file at least in the root directory and must contain changes in those changelog files where directories with a changelog file contains the commit changes.
-     There would be a pre-commit hook which will block to commit if a commit does not have a changelog file in the root directory or does not have changes in those changelog files where directories with a changelog file contains the commit changes.
+     There would be a pre-commit hook which will block to commit if a commit does not have a changelog file in the root directory or does not have changes in those changelog files where directories with a changelog file contains the commit changes or does have changes in those changelog files where directories with a changelog file does not contain the commit changes
+     (where <location> part is absent or is different, the location counter part must be checked too).
 
    **Example**:
 
@@ -152,39 +153,6 @@ enable/disable such a check.
 
    Does not matter which one changes contained in a changelog file.
    Is matter if a changelog file exists, then it must has changes for a directory it contained in if the directory files are changed in the commit.
-
-5.2. The server must contain the user list with user names and emails with the push privileges as described before.
-     All commits with a changelog file must contain an authors list per each changelog line with changes description.
-     There would be a pre-commit hook which will block to commit if one, a set or all of these are not met in the order of appearance:
-   * a commit does not have an authors list in changes of at least in one changelog file.
-   * a not merge commit does not have the author which is authored the commit in the list of authors in changes of a changelog file.
-   * a merge commit does not have the author which is authored a parent (or a parent of the parent and so on recursively until a not merge commit) commit in the list of authors in changes of a changelog file of the merge commit.
-
-   **Example**:
-
-   > User `user` does push to branches:
-   >
-   > * `dev`               REJECTED
-   > * `feature/blabla`    REJECTED
-   ><br />
-   > The `dev` and `feature/blabla` contains a not merge commit with a changelog file which does contain changes with description but without the author user name in at least one authors list.
-
-   All commits must be rejected because some of being pushed commits are rejected.
-
-   Each user must record or reflect only the its own changes in each not merge commit. If not, then a not merge commit must be split and been committed by different authors.
-   This particular check for a not merge commit can be turned off by a configuration variable.
-
-   Each user must merge only those not merged commits which authors does contain in changelog file authors list of a resulted merge commit. If at least one parent commit is authored by the author not in at least one authors list of a merge commit changlog file, then a merge commit must be rejected.
-   This particular check for a merge commit can be turned off by a configuration variable.
-
-   The rule exists to control the changes reflection within a changelog file from a parent not merge commit in case of a merge commit and within a changelog file from a not merge commit.
-
-   > [!NOTE]  
-   > Such functionality is affected by `git commit` command and may be omitted or not used by a user. So this must be somehow integrated into local user environment to help user to automatically generate an appropriate author list in changes of each changelog file before made a commit.
-
-   > [!NOTE]  
-   > A merge commit may contain changes not been recorded or reflected in a parent commit (a change description without an author). Or a change description may change after the merge (a change with the same author but with altered description). This rule does not track or reject such implications.
-
 
 -------------------------------------------------------------------------------
 3. FILES
