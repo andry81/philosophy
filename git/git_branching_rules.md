@@ -1,5 +1,5 @@
 * git_branching_rules.md
-* 2026.08.10
+* 2026.08.11
 
 1. DESCRIPTION  
 2. RULES  
@@ -55,7 +55,11 @@ enable/disable such a check.
          If a feature is not big enough to allocate a branch in `feature/*`, then a user can make not merged commits directly in the `dev`.
 
       2. The `dev` branch is the place to run tests from, so each commit in the `dev` can trigger a pipeline.
-         If you create a temporary commit, then you should not push into `dev`, otherwise use `feature/*` for that.
+         If you create a temporary commit, then you should not push into `dev`, otherwise use `feature/*` for that or even a local only branch.
+
+         > [!NOTE]  
+         > For example, 2 level `tmp/*` is preferred to avoid a confusion and because it is skipped by default by the `gitcmd` and `gituserbin` project scripts.
+         > See the `GIT_*_EXCLUDE_BRACHES` variables description in the `gituserbin` project.
 
       3. After the tests has passed or commits are reviewed, then the user can merge it into the `release` or `master` branches.
 
