@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2026.08.10
+* 2026.08.19
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -112,14 +112,11 @@ Changelog files organization.
   > For example, you can use other changelog message types like: `notice`, `warning`, `error`, `hint`, `doc` and etc.
   > Each changelog message type has sence in a particular sources context.
 
-  > [!NOTE]
-  > The `changed` and `refactor` \<type\> is dependent to \<location\> and the end
-  > file.
+  > [!NOTE]  
+  > The `changed` and `refactor` \<type\> is dependent to \<location\> and the end file.
   > In case of a code source, the difference is in functionality:
-  > `changed` - for code only, `refactor` - for the rest, for example, for
-  > comments.
-  > If the file is not a code source, then the `refactor` may be replaced by
-  > `changed`.
+  > `changed` - for code only, `refactor` - the rest, for example, comments.
+  > If the file is not a code source, then the `refactor` may be replaced by `changed`.
 
   `<location>`:
 
@@ -136,53 +133,66 @@ Changelog files organization.
   Example:
 
   ```
-  dirA/dir1, dirA/dir3, dirB/*, dirC: fileA, fileB, fileC-*.txt
+  dirA, dirA/dirB, dirB/*, dirC/**: fileA, dirX/fileB, fileC-*.txt, /fileD.txt
   ```
 
   Resulted cross product:
 
-  * dirA/dir1/fileA
-  * dirA/dir1/fileB
-  * dirA/dir1/fileC-*.txt
-  * dirA/dir3/fileA
-  * dirA/dir3/fileB
-  * dirA/dir3/fileC-*.txt
+  * dirA/**/fileA
+  * dirA/dirX/fileB
+  * dirA/**/fileC-*.txt
+  * dirA/fileD.txt
+  * dirA/dirB/**/fileA
+  * dirA/dirB/dirX/fileB
+  * dirA/dirB/**/fileC-*.txt
+  * dirA/dirB/fileD.txt
   * dirB/*/fileA
-  * dirB/*/fileB
+  * dirB/*/dirX/fileB
   * dirB/\*/fileC-*.txt
-  * dirC/fileA
-  * dirC/fileB
-  * dirC/fileC-*.txt
+  * dirB/\*/fileD.txt
+  * dirC/**/fileA
+  * dirC/**/dirX/fileB
+  * dirC/**/fileC-*.txt
+  * dirC/**/fileD.txt
 
   Rules:
 
-  * If the `<location>` expression does have only one section, has no `:` and `/` characters, then a string can be a directory or a file, depending on the context.
-  * If the `<location>` expression has or has no a file or a directory name globbing character (`*`, `?`), except single component `**` or `*`, but does not have a slash `/` character, then the scope has a multi level recursion.
-  * If the `<location>` expression has a directory name globbing character (`*`, `?`), then the level of recursion is dependent on the `*` character only: `**` - multi level, `*` - single level.
+  * The `<location>` file name in `<file-path-list>` can be a directory or a file, depends on the commit.
+  * If the `<location>` expression does not have `**` or `*` directory components and has no `/` characters in `<file-path-list>`, then a file scope is not limited and has a recursion.
+  * If the `<location>` expression has `/` character in `<file-path-list>`, but does not have `**` or `*` directory components, then a file scope is limited to a directory scope and has no recursion.
+  * If the `<location>` expression has `*` as a directory path component (`*/...` or `.../*/...`), but does not have `**` directory component, then a file scope is limited to a sub directory scope and has no recursion.
+  * If the `<location>` expression has `**` as a directory path component (`**/...` or `.../**/...`), then a file scope is limited only by the path before and after the `**` and has a recursion.
 
-  So the `**/<file>` and `<file>` paths are equal, the `*<file>` and `<file>` paths has the same level of recursion, but `*/<file>` and `<file>` paths has a different level of recursion.
+  So the `**/<file>` and `<file>` paths are equal, the `*<file>` and `<file>` paths is not limited and has a recursion, but `*/<file>` and `<file>` paths has a different scope.
   To specifically limit the scope of a path, you have to particularly use a path with a slash character.
+  To limit the recursion, where a file can be found, use a path with a slash character in `<file-path-list>`.
 
   Examples:
 
-  * `<file>`, `**/<file>`         - a file somewhere in a source tree, a path with multi level recursion.
-  * `/<file>`                     - a file in the root directory.
-  * `<dir>`, `**/<dir>`           - somewhere in a directory of a source tree.
-  * `/<dir>`                      - somewhere in a directory in the root directory.
-  * `<dir>/<file>`                - a file somewhere in a directory in a source tree.
-  * `<dir>/<dir>`                 - somewhere in a directory of a directory in a source tree.
-  * `*/<file>`, `<dir>/*/<file>`  - partial path to a file with a single level recursion.
-  * `*/<dir>`, `<dir>/*/<dir>`    - partial path to a directory with a single level recursion.
-  * `<dir>/**/<file>`             - partial path to a file with multi level recursion beginning a directory.
-  * `<dir>/**/<dir>`              - partial path to a directory with multi level recursion beginning a directory.
+  * `/<file>`                                     - a file in the root directory, no recursion.
+  * `/<dir>`                                      - a directory in the root directory, no recursion.
+  * `<file>`, `**/<file>`                         - a file somewhere in a source tree, has a recursion.
+  * `<dir>`, `**/<dir>`, `<dir>/**: <dir>`, `<dir>: **/<dir>`, `<dir>: <dir>`
+                                                  - a directory somewhere in a directory of a source tree, has a recursion.
+  * `<dir>/<file>`, `<dir>: <dir>/<file>`         - a file somewhere in a directory of a source tree, no recursion.
+  * `<dir>/<dir>`, `<dir>: <dir>/<dir>`           - a directory somewhere in a directory of a source tree, no recursion.
+  * `*/<file>`, `<dir>/*/<file>`                  - a file somewhere in a directory of a source tree, no recursion.
+  * `*/<dir>`, `<dir>/*/<dir>`                    - a directory somewhere in a directory of a source tree, no recursion.
+  * `<dir>/**/<file>`, `<dir>/**: <file>`, `<dir>: **/<file>`, `dir: <file>`
+                                                  - a file somewhere in a directory of a source tree, has a recursion
+  * `<dir>/**/<dir>`, `<dir>/**: <dir>`, `<dir>: **/<dir>`, `<dir>: <dir>`
+                                                  - a directory somewhere in a directory of a source tree, has a recursion
+  * `<dir>/**/<dir>/<file>`, `<dir>/**: <dir>/<file>`, `<dir>: **/<dir>/<file>`
+                                                  - a file somewhere in a sub directory of a source tree, has a recursion
 
   > [!NOTE]  
   > There is no clear distinction between a file and a directory in the end of a path, because `<location>` depends on what the commit has.
-  > So in case of an ambiguous path, which is not much frequent case, you can use the `<location>` with the leading slash or a slash in the middle.
-  > For a precise location you must use the leading slash with the exact relative source tree path without the globbing characters.
+  > So in case of an ambiguous path, which is not much frequent case, you can use the `<location>` with the leading slash, a slash in the middle or two segmented section splitted by the `:`.
+  > For a precise location you must use the leading slash with the exact relative source tree path without the globbing characters in directory path components.
 
   > [!NOTE]  
-  > The additional meaning of a file globbing in the `<location>` is that.
+  > The additional meaning of a file globbing in the `<location>` in the file name of `<file-path-list>` is that.
+  >
   > In case of a globbing file path without a directory part it does mean that the selection/search is made mostly in an entire repository and a commit is a result of a selection/search.
   >
   > Example:
@@ -191,21 +201,29 @@ Changelog files organization.
   >   ```
   >
   >   > Select all files with the `bat` extension.
-  >   > But because a directory part is absent, then the selection appliement is mostly made to an entire repository.
+  >   > But because a directory part is absent, then the selection appliement is mostly made to an entire repository.  
   >   > Equals to: `**/*.bat`
   >
   > So a commit CAN BE the result of a repository selection and mostly it is.
   >
-  > In case of a direct (not globbing) file path or a globbing file path with a directory part, it mostly does mean the selection is applied TO a commit and not made for an entire repository.
+  > In case of a direct not globbing file path or a globbing file path with a not globbing directory part, it mostly does mean the selection is applied TO a commit and not made for an entire repository.
   >
   > Example:
   >   ```console
   >   scripts/print-*.bat
   >   ```
   >
-  >   > Select all files with the `bat` extension and with `print-` name beginning the `scripts` directory.
-  >   > But because a directory part is present the selection appliment is mostly made on a commit, when a commit is the result of another selection from a repository.
-  >   > Equals to: `scripts/**/print-*.bat`.
+  >   > Select all files with the `bat` extension and with `print-` name prefix beginning the `scripts` directory.
+  >   > But because a directory part is present the selection appliement is mostly made to a commit, when a commit is the result of another selection from a repository.  
+  >   > May or may not equal to: `scripts/**/print-*.bat`.
+  >
+  > Example:
+  >   ```console
+  >   scripts: print-*.bat
+  >   ```
+  >
+  >   > The same as `scripts/print-*.bat`, but with a recursion, because `<file-path-list>` has no `/` character.  
+  >   > Equals to: `scripts/**/print-*.bat`
   >
   > So the `<location>` CAN BE both the selection result from a commit AND selection from a repository, where a commit is the result of another selection, depending on a directory counter part and selection context.
   > The end meaning is dependent on a commit content and it's message.
@@ -485,21 +503,6 @@ Here is collected a basic set of frequently used messages as examples:
     <td>
       Set of missed changes just late or expensive to amend.
       Difference between the `fixed` and `changed` is that the `fixed` is for a fixing change.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      changed
-    </td>
-    <td>
-      <ul>
-        <li>minor&nbsp;improvement(s)</li>
-        <li>code&nbsp;improvement(s)</li>
-      </ul>
-    </td>
-    <td>
-      Set of improvements to change a code functionality or an output.
-      Difference between the `minor` and `code` is that the `code` may has a not minor code change(s).
     </td>
   </tr>
   <tr>
