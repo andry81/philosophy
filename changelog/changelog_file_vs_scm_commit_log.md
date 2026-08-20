@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2026.08.19
+* 2026.08.20
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -158,21 +158,22 @@ Changelog files organization.
   Rules:
 
   * The `<location>` file name in `<file-path-list>` can be a directory or a file, depends on the commit.
-  * If the `<location>` expression does not have `**` or `*` directory components and has no `/` characters in `<file-path-list>`, then a file scope is not limited and has a recursion.
+  * If the `<location>` expression does not have `**` or `*` directory components and has no `/` characters in `<file-path-list>`, then a file scope is not limited or has a source tree scope beginning the root directory or a directory in the `<dir-path-list>`, and has a recursion.
   * If the `<location>` expression has `/` character in `<file-path-list>`, but does not have `**` or `*` directory components, then a file scope is limited to a directory scope and has no recursion.
   * If the `<location>` expression has `*` as a directory path component (`*/...` or `.../*/...`), but does not have `**` directory component, then a file scope is limited to a sub directory scope and has no recursion.
   * If the `<location>` expression has `**` as a directory path component (`**/...` or `.../**/...`), then a file scope is limited only by the path before and after the `**` and has a recursion.
 
   So the `**/<file>` and `<file>` paths are equal, the `*<file>` and `<file>` paths is not limited and has a recursion, but `*/<file>` and `<file>` paths has a different scope.
-  To specifically limit the scope of a path, you have to particularly use a path with a slash character.
-  To limit the recursion, where a file can be found, use a path with a slash character in `<file-path-list>`.
+  To limit the scope of a path, you have to particularly use a path in the `<location>` with a slash character.
+  To limit the scope AND recursion, where a file can be found, use a path with a slash character in the `<file-path-list>`.
 
   Examples:
 
   * `/<file>`                                     - a file in the root directory, no recursion.
   * `/<dir>`                                      - a directory in the root directory, no recursion.
   * `<file>`, `**/<file>`                         - a file somewhere in a source tree, has a recursion.
-  * `<dir>`, `**/<dir>`, `<dir>/**: <dir>`, `<dir>: **/<dir>`, `<dir>: <dir>`
+  * `<dir>`, `**/<dir>`                           - a directory somewhere in a source tree, has a recursion.
+  * `<dir>/**/<dir>`, `<dir>/**: <dir>`, `<dir>: **/<dir>`, `<dir>: <dir>`
                                                   - a directory somewhere in a directory of a source tree, has a recursion.
   * `<dir>/<file>`, `<dir>: <dir>/<file>`         - a file somewhere in a directory of a source tree, no recursion.
   * `<dir>/<dir>`, `<dir>: <dir>/<dir>`           - a directory somewhere in a directory of a source tree, no recursion.
@@ -187,8 +188,7 @@ Changelog files organization.
 
   > [!NOTE]  
   > There is no clear distinction between a file and a directory in the end of a path, because `<location>` depends on what the commit has.
-  > So in case of an ambiguous path, which is not much frequent case, you can use the `<location>` with the leading slash, a slash in the middle or two segmented section splitted by the `:`.
-  > For a precise location you must use the leading slash with the exact relative source tree path without the globbing characters in directory path components.
+  > So in case of an ambiguous path, which is not much frequent case, you must use `<location>` with the leading slash in the `<file-path-list>` and may be without globbing characters.
 
   > [!NOTE]  
   > The additional meaning of a file globbing in the `<location>` in the file name of `<file-path-list>` is that.
