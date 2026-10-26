@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2026.08.20
+* 2026.10.26
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -91,6 +91,10 @@ Changelog files organization.
   ```
   YYYY-MM-DD:
   ```
+
+  > [!NOTE]  
+  > The date-time localization depends on who does a commit.
+  > If a human, then better to use a local date-time. If an automatic system or a bot, then better to use the UTC.
 
   `<type>`:
 
