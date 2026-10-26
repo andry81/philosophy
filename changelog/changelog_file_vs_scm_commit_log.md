@@ -137,7 +137,7 @@ Changelog files organization.
   Example:
 
   ```
-  dirA, dirA/dirB, dirB/*, dirC/**: fileA, dirX/fileB, fileC-*.txt, /fileD.txt
+  dirA, dirA/dirB, dirB/*, dirC/**, dirD/*/dirE: fileA, dirX/fileB, fileC-*.txt, /fileD.txt
   ```
 
   Resulted cross product:
@@ -146,30 +146,42 @@ Changelog files organization.
   * dirA/dirX/fileB
   * dirA/**/fileC-*.txt
   * dirA/fileD.txt
+  
   * dirA/dirB/**/fileA
   * dirA/dirB/dirX/fileB
   * dirA/dirB/**/fileC-*.txt
   * dirA/dirB/fileD.txt
+  
   * dirB/*/fileA
   * dirB/*/dirX/fileB
   * dirB/\*/fileC-*.txt
-  * dirB/\*/fileD.txt
+  * dirB/*/fileD.txt
+  
   * dirC/**/fileA
   * dirC/**/dirX/fileB
   * dirC/**/fileC-*.txt
   * dirC/**/fileD.txt
+  
+  * dirD/\*/dirE/**/fileA
+  * dirD/*/dirE/dirX/fileB
+  * dirD/\*/dirE/**/fileC-*.txt
+  * dirD/*/dirE/fileD.txt
+
+  > [!NOTE]  
+  > The `*` in the middle of the `<dir-path-list>` does not limit the recursion for the `<file-path-list>`.
+  > You have to explicitly use the slash character in the `<file-path-list>` and don't use `**` to limit the recursion.
 
   Rules:
 
   * The `<location>` file name in `<file-path-list>` can be a directory or a file, depends on the commit.
   * If the `<location>` expression does not have `**` or `*` directory components and has no `/` characters in `<file-path-list>`, then a file scope is not limited or has a source tree scope beginning the root directory or a directory in the `<dir-path-list>`, and has a recursion.
   * If the `<location>` expression has `/` character in `<file-path-list>`, but does not have `**` or `*` directory components, then a file scope is limited to a directory scope and has no recursion.
-  * If the `<location>` expression has `*` as a directory path component (`*/...` or `.../*/...`), but does not have `**` directory component, then a file scope is limited to a sub directory scope and has no recursion.
-  * If the `<location>` expression has `**` as a directory path component (`**/...` or `.../**/...`), then a file scope is limited only by the path before and after the `**` and has a recursion.
+  * If the `<location>` expression has `*` as a directory path component (`*/...` or `.../*/...`), but does not have `**` directory component, then a file scope is limited to a sub directory scope and the recursion depends on the slash character or `**` in the `<file-path-list>`.
+  * If the `<location>` expression has `**` as a directory path component (`**/...` or `.../**/...`), then a file scope is limited only by the path before and after the `**` and has a recursion. The recursion particularly in the `<file-path-list>` depends on the slash character or `**`.
 
   So the `**/<file>` and `<file>` paths are equal, the `*<file>` and `<file>` paths is not limited and has a recursion, but `*/<file>` and `<file>` paths has a different scope.
   To limit the scope of a path, you have to particularly use a path in the `<location>` with a slash character.
-  To limit the scope AND recursion, where a file can be found, use a path with a slash character in the `<file-path-list>`.
+  To limit the scope AND recursion, where a file can be found, use a path with a slash character in the `<file-path-list>` and don't use `**` any there.
 
   Examples:
 
@@ -528,7 +540,7 @@ Here is collected a basic set of frequently used messages as examples:
 Use an external file or files to describe the directory source changes in time.
 
 Advantages (Pros) of using a separate changelog file for changes only from the
-sources in a separate directory and all subdirectories (an inclusive log):
+sources in a separate directory and all sub directories (an inclusive log):
 
 * Changes are stored separately from the source control system, so they can be
   retrieved, read or written separately from the source control system, and
