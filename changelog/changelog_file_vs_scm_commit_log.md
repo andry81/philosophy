@@ -1,5 +1,5 @@
 * changelog_file_vs_scm_commit_log.md
-* 2026.10.26
+* 2026.11.14
 
 1. DESCRIPTION  
 2. REPOSITORY DIRECTORIES EXAMPLE  
@@ -716,6 +716,11 @@ Disadvantages (Cons) of using a separate changelog file:
   For example, at the time of the commit, continuing to edit it (for example,
   in SVN this is possible, in Git some times, because you need to first add the
   file to the stage specifically for a commit)
+
+* When a source tree is moved into another repository, then the changelog file
+  has to be left as is for the records wher the location is related to the new
+  repository. Use can search, select and move them manually, but it still is
+  not automatic.
 
 Conclusions.
 
