@@ -66,9 +66,8 @@ SVN-to-Git translation related tools:
   * svneverever:  
     https://github.com/hartwork/svneverever  
 
-Git related tools:
-  * git-subrepo:  
-    https://github.com/ingydotnet/git-subrepo  
+Lists of all Git related tools:
+  * https://github.com/stars/andry81/lists/git-ext-repo-man  
 
 -------------------------------------------------------------------------------
 3. CONSLUSION
