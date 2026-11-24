@@ -123,7 +123,7 @@ These set of management tools are convenient to maintain the externals:
 >     (sorted by stars)
 >   * <sup>2</sup>https://devnoname120.github.io/useful-forks/?repo=dirk-thomas/vcstool
 >     (sorted by stars and ahead commits)
->   * <sup>3</sup>https://techgaun.github.io/active-forks/index.html#dirk-thomas/vcstool
+>   * <sup>2</sup>https://techgaun.github.io/active-forks/index.html#dirk-thomas/vcstool
 >     (sorted by stars)
 >
 > * gitman:
@@ -133,7 +133,7 @@ These set of management tools are convenient to maintain the externals:
 >     (sorted by stars)
 >   * <sup>2</sup>https://devnoname120.github.io/useful-forks/?repo=jacebrowning/gitman
 >     (sorted by stars and ahead commits)
->   * <sup>3</sup>https://techgaun.github.io/active-forks/index.html#jacebrowning/gitman
+>   * <sup>2</sup>https://techgaun.github.io/active-forks/index.html#jacebrowning/gitman
 >     (sorted by stars)
 >
 > * ripvcs:
@@ -143,12 +143,11 @@ These set of management tools are convenient to maintain the externals:
 >     (sorted by stars)
 >   * <sup>2</sup>https://devnoname120.github.io/useful-forks/?repo=ErickKramer/ripvcs
 >     (sorted by stars and ahead commits)
->   * <sup>3</sup>https://techgaun.github.io/active-forks/index.html#ErickKramer/ripvcs
+>   * <sup>2</sup>https://techgaun.github.io/active-forks/index.html#ErickKramer/ripvcs
 >     (sorted by stars)
 >
 > <sup>1</sup> - Does not require to login.<br />
 > <sup>2</sup> - Requires `public_repo` access token to avoid public rate limits.<br />
-> <sup>3</sup> - Does not require `public_repo` access token to avoid public rate limits.<br />
 
 On another hand the `.gitmodules` file might be required in some circumstances
 and it's presence (and vcstool file too as well if hashes are used) in the
