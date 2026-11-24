@@ -1,5 +1,5 @@
 * git_modules_experience.md
-* 2026.06.30
+* 2026.11.25
 
 1. DESCRIPTION  
 2. INVESTIGATION  
@@ -67,10 +67,6 @@ SVN-to-Git translation related tools:
     https://github.com/hartwork/svneverever  
 
 Git related tools:
-  * vcstool:  
-    https://github.com/dirk-thomas/vcstool  
-  * gitman:  
-    https://github.com/jacebrowning/gitman  
   * git-subrepo:  
     https://github.com/ingydotnet/git-subrepo  
 
@@ -83,6 +79,8 @@ These set of management tools are convenient to maintain the externals:
    > Discussion: `Status of vcstool` : https://github.com/dirk-thomas/vcstool/issues/242
 
 2. [gitman](https://github.com/jacebrowning/gitman)
+
+3. [ripvcs](https://github.com/ErickKramer/ripvcs)
 
 > [!NOTE]
 >
@@ -113,20 +111,44 @@ These set of management tools are convenient to maintain the externals:
 >
 > Mine list of forks:
 >
-> * vcstool:
->   * https://github.com/orgs/andry81-forks/repositories?type=source&q=vcstool
+> https://github.com/orgs/andry81-forks/repositories?type=source&q=vcstool+OR+gitman+OR+ripvcs
 >
-> Maximum list of the original repository forks:
+>
+> Maximum list of the original repository forks (can be sorted by last push):
 >
 > * vcstool:
->   * https://github.com/dirk-thomas/vcstool/forks?include=active%2Carchived%2Cinactive%2Cnetwork&page=1&sort_by=stargazer_counts
+>   * <sup>1</sup>https://github.com/dirk-thomas/vcstool/forks?include=active%2Carchived%2Cinactive%2Cnetwork&page=1&sort_by=stargazer_counts
 >     (sorted by stars)
->   * https://useful-forks.github.io/?repo=dirk-thomas/vcstool
+>   * <sup>2</sup>https://useful-forks.github.io/?repo=dirk-thomas/vcstool
 >     (sorted by stars)
->   * https://devnoname120.github.io/useful-forks/?repo=dirk-thomas/vcstool
+>   * <sup>2</sup>https://devnoname120.github.io/useful-forks/?repo=dirk-thomas/vcstool
 >     (sorted by stars and ahead commits)
->   * https://techgaun.github.io/active-forks/index.html#dirk-thomas/vcstool
+>   * <sup>3</sup>https://techgaun.github.io/active-forks/index.html#dirk-thomas/vcstool
 >     (sorted by stars)
+>
+> * gitman:
+>   * <sup>1</sup>https://github.com/jacebrowning/gitman/forks?include=active%2Carchived%2Cinactive%2Cnetwork&page=1&sort_by=stargazer_counts
+>     (sorted by stars)
+>   * <sup>2</sup>https://useful-forks.github.io/?repo=jacebrowning/gitman
+>     (sorted by stars)
+>   * <sup>2</sup>https://devnoname120.github.io/useful-forks/?repo=jacebrowning/gitman
+>     (sorted by stars and ahead commits)
+>   * <sup>3</sup>https://techgaun.github.io/active-forks/index.html#jacebrowning/gitman
+>     (sorted by stars)
+>
+> * ripvcs:
+>   * <sup>1</sup>https://github.com/ErickKramer/ripvcs/forks?include=active%2Carchived%2Cinactive%2Cnetwork&page=1&sort_by=stargazer_counts
+>     (sorted by stars)
+>   * <sup>2</sup>https://useful-forks.github.io/?repo=ErickKramer/ripvcs
+>     (sorted by stars)
+>   * <sup>2</sup>https://devnoname120.github.io/useful-forks/?repo=ErickKramer/ripvcs
+>     (sorted by stars and ahead commits)
+>   * <sup>3</sup>https://techgaun.github.io/active-forks/index.html#ErickKramer/ripvcs
+>     (sorted by stars)
+>
+> <sup>1</sup> - Does not require to login.<br />
+> <sup>2</sup> - Requires `public_repo` access token to avoid public rate limits.<br />
+> <sup>3</sup> - Does not require `public_repo` access token to avoid public rate limits.<br />
 
 On another hand the `.gitmodules` file might be required in some circumstances
 and it's presence (and vcstool file too as well if hashes are used) in the
